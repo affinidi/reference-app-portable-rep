@@ -6,13 +6,11 @@
   "scripts": {
     "generate": "node generator/generate.mjs",
     "generate:watch": "nodemon --watch ./generator/** --exec 'npm run generate'",
-    "dev:health": "npm run --prefix use-cases/health dev -- -p 3001",
-    "dev:education": "npm run --prefix use-cases/education dev -- -p 3002",
-    "dev:ticketing": "npm run --prefix use-cases/ticketing dev -- -p 3003",
+    "dev:career": "npm run --prefix use-cases/career dev -- -p 3001",
+    "dev:gaming": "npm run --prefix use-cases/gaming dev -- -p 3002",
     "dev": "concurrently -n w: npm:dev:*",
-    "build:health": "npm run --prefix use-cases/health build",
-    "build:education": "npm run --prefix use-cases/education build",
-    "build:ticketing": "npm run --prefix use-cases/ticketing build",
+    "build:career": "npm run --prefix use-cases/career build",
+    "build:gaming": "npm run --prefix use-cases/gaming build",
     "build": "concurrently -n w: npm:build:*"
   },
   "repository": {

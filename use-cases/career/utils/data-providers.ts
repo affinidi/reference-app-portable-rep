@@ -1,4 +1,3 @@
-import { ROUTES } from '.'
 import { signIn } from 'next-auth/react'
 
 export enum DataProvider {
@@ -18,7 +17,7 @@ export const DATA_PROVIDER_ROUTES = {
 
 export const initiateDataImport = async (provider: DataProvider) => {
   if (provider === DataProvider.GITHUB) {
-    await signIn('github', { callbackUrl: ROUTES.githubCallback })
+    await signIn('github', { callbackUrl: DATA_PROVIDER_ROUTES.githubCallback })
   } else {
     throw new Error(`Unknown data provider: ${provider}`)
   }

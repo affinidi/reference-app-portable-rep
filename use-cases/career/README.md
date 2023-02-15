@@ -17,7 +17,7 @@ Setting up the reference app is easy, just follow these steps:
     ```
     $ git clone git@github.com:affinidi/reference-app-portable-rep.git
     $ cd reference-app-portable-rep
-    $ cd use-cases/{use-case}
+    $ cd use-cases/career
     ```
 2. Install the dependencies:
     ```

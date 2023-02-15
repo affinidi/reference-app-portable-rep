@@ -57,7 +57,9 @@ async function generate() {
 
     for (const path of pathsToOverwrite) {
       console.log(`Overwriting "${path.join('/')}" path`)
-      await overwrite(join(generatorUseCasePath, ...path), join(useCasePath, ...path))
+      if (await exists(join(generatorUseCasePath, ...path))) {
+        await overwrite(join(generatorUseCasePath, ...path), join(useCasePath, ...path))
+      }
     }
     
     console.log('Transforming package.json and package-lock.json files')
@@ -72,7 +74,7 @@ async function generate() {
 
     console.log('Generating the README.md file')
     await fs.cp(join(rootPath, 'README.md'), join(useCasePath, 'README.md'))
-    await replaceVariables(join(useCasePath, 'README.md'), { useCase })
+    await replaceVariables(join(useCasePath, 'README.md'), { "use-case": useCase })
   }
 }
 
@@ -92,27 +94,36 @@ async function replaceVariables(path, variables) {
   await fs.writeFile(path, text, { encoding: 'utf-8' })
 }
 
-async function merge(src, dest, options) {
-  await mkdirp(join(dest, '..'))
+async function merge(from, to, options) {
+  await mkdirp(join(to, '..'))
   
   try {
-    await fs.cp(src, dest, { recursive: true, ...options })
+    await fs.cp(from, to, { recursive: true, ...options })
   } catch (error) {
     if (error.code === 'ENOENT') {
-      console.warn(`Warning: Source doesn't exist: ${src}`)
+      console.warn(`Warning: Source doesn't exist: ${from}`)
     } else {
       throw error
     }
   }
 }
 
-async function overwrite(src, dest) {
-  await deletePath(dest)
-  await merge(src, dest)
+async function overwrite(from, to) {
+  await deletePath(to)
+  await merge(from, to)
 }
 
 async function deletePath(path) {
   await rimraf(path)
+}
+
+async function exists(path) {
+  try {
+    await fs.access(path)
+    return true
+  } catch {
+    return false
+  }
 }
 
 generate()
