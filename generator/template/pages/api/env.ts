@@ -3,9 +3,7 @@
 const requiredEnvs = [
   'PROJECT_ID',
   'PROJECT_DID',
-  'API_KEY_HASH',
-  'GITHUB_APP_CLIENT_ID',
-  'GITHUB_APP_CLIENT_SECRET',
+  'API_KEY_HASH'
 ]
 const missingEnvs = requiredEnvs.filter((name) => !process.env[name])
 if (missingEnvs.length !== 0) {
