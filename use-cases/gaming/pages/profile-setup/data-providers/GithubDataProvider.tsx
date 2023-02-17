@@ -1,8 +1,7 @@
 import { FC } from 'react'
-import Image from 'next/image'
+
 import { Box, Typography } from 'components'
-import { DownloadIcon } from 'assets'
-import githubIcon from 'public/images/icon-github.svg'
+import { DownloadIcon, GithubIcon } from 'assets'
 import { VerifiableCredential } from 'types/vc'
 
 import * as S from './GithubDataProvider.styled'
@@ -18,7 +17,7 @@ const GithubDataProvider: FC<Props> = ({ vc, onConnect }) => {
       <S.CardHeader direction="row" alignItems="center" justifyContent="space-between">
         <Box direction="row" alignItems="center" gap={16}>
           <S.CardIcon>
-            <Image src={githubIcon} alt="GitHub" />
+            <GithubIcon />
           </S.CardIcon>
           <Typography variant="h6">Github</Typography>
         </Box>

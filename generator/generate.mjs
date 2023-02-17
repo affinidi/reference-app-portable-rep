@@ -7,12 +7,16 @@ import rimraf from 'rimraf'
 const filesToAvoid = ['node_modules', '.next', '.env']
 
 const pathsToMerge = [
-  ['__tests__'],
-  ['docs'],
-  ['utils'],
-  ['types'],
-  ['styles'],
   ['public', 'images'],
+  ['assets'],
+  ['utils'],
+  ['components'],
+  ['styles'],
+  ['verifier'],
+  ['pages', 'components'],
+  ['pages', 'home'],
+  ['docs'],
+  ['__tests__'],
 ]
 
 const pathsToOverwrite = [
@@ -34,7 +38,7 @@ async function generate() {
 
   const useCases = (await fs.readdir(generatorUseCasesPath, { withFileTypes: true }))
     .filter(i => i.isDirectory()).map(i => i.name)
-  
+
   console.log(`Detected use cases: ${useCases.join(', ')}`)
 
   for (const useCase of useCases) {
@@ -61,7 +65,7 @@ async function generate() {
         await overwrite(join(generatorUseCasePath, ...path), join(useCasePath, ...path))
       }
     }
-    
+
     console.log('Transforming package.json and package-lock.json files')
     const packageName = `reference-app-${useCase}`
     await transformJson(join(useCasePath, 'package.json'), (packageJson) => {
@@ -96,7 +100,7 @@ async function replaceVariables(path, variables) {
 
 async function merge(from, to, options) {
   await mkdirp(join(to, '..'))
-  
+
   try {
     await fs.cp(from, to, { recursive: true, ...options })
   } catch (error) {

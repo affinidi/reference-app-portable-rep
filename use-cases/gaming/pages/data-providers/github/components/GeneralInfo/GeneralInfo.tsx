@@ -2,9 +2,8 @@ import { FC } from 'react'
 import Image from 'next/image'
 
 import { GithubProfileCredentialSubject } from 'types/data-providers'
+import { MapOutlinedIcon, OfficeIcon } from 'assets'
 import { Box, Typography } from 'components'
-import officeIcon from 'public/images/icon-office.svg'
-import mapOutlinedIcon from 'public/images/icon-map-outlined.svg'
 
 import * as S from './GeneralInfo.styled'
 
@@ -28,14 +27,14 @@ export const GeneralInfo: FC<GeneralInfoProps> = ({ info }) => (
 
           {info.company && (
             <Box direction="row" gap={8}>
-              <Image src={officeIcon} alt="Company" />
+              <OfficeIcon />
               <S.GrayText variant="p2">{info.company}</S.GrayText>
             </Box>
           )}
 
           {info.location && (
             <Box direction="row" gap={8}>
-              <Image src={mapOutlinedIcon} alt="Location" />
+              <MapOutlinedIcon />
               <S.GrayText variant="p2">{info.location}</S.GrayText>
             </Box>
           )}
