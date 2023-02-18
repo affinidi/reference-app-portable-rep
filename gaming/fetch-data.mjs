@@ -36,27 +36,35 @@ async function fetchBattleNetProfile({ accessToken }) {
 }
 
 async function fetchDiablo3Profile({ region, battleTag, accessToken }) {
-  const {
-    data: {
+  try {
+    const {
+      data: {
+        paragonLevel,
+        guildName,
+        kills,
+        heroes,
+        timePlayed,
+      }
+    } = await axios(`https://${region}.api.blizzard.com/d3/profile/${encodeURIComponent(battleTag)}/?locale=en_US&access_token=${accessToken}`)
+
+    return {
       paragonLevel,
       guildName,
-      kills,
-      heroes,
+      kills: Object.values(kills).reduce((a, b) => a + b, 0),
+      heroes: heroes.map((hero) => ({
+        name: hero.name,
+        class: hero.class,
+        level: hero.level,
+        kills: Object.values(hero.kills).reduce((a, b) => a + b, 0),
+      })),
       timePlayed,
     }
-  } = await axios(`https://${region}.api.blizzard.com/d3/profile/${battleTag}/?locale=en_US&access_token=${accessToken}`)
+  } catch (error) {
+    if (error.response.status === 404) {
+      return null
+    }
 
-  return {
-    paragonLevel,
-    guildName,
-    kills: Object.values(kills).reduce((a, b) => a + b, 0),
-    heroes: heroes.map((hero) => ({
-      name: hero.name,
-      class: hero.class,
-      level: hero.level,
-      kills: Object.values(hero.kills).reduce((a, b) => a + b, 0),
-    })),
-    timePlayed,
+    throw error
   }
 }
 
@@ -68,6 +76,10 @@ async function fetchStarcraft2Profile({ region, accountId, accessToken }) {
       Authorization: `Bearer ${accessToken}`
     }
   })
+
+  if (!profile) {
+    return null
+  }
 
   const {
     profileId,
@@ -115,31 +127,64 @@ async function fetchStarcraft2Profile({ region, accountId, accessToken }) {
 }
 
 async function fetchWorldOfWarcraftProfile({ region, accessToken }) {
-  const realmSlug = ''
-  const characterName = ''
+  try {
+    const {
+      data: {
+        wow_accounts
+      }
+    } = await axios(`https://${region}.api.blizzard.com/profile/user/wow?namespace=profile-${region}&locale=en_US&access_token=${accessToken}`)
 
-  const {
-    data: {
-      faction,
-      race,
-      active_spec: specialization,
-      character_class: characterClass,
-      realm,
-      guild,
-      level,
-      achievement_points: achievementPoints,
+    const accountCharacters = wow_accounts.flatMap(i => i.characters)
+
+    const characters = await Promise.all(
+      accountCharacters.map(async (character) => {
+        const characterId = character.id
+        const realmId = character.realm.id
+        const realmSlug = character.realm.slug
+        const characterName = character.name.toLowerCase()
+
+        const {
+          data: {
+            faction,
+            race,
+            active_spec: specialization,
+            character_class: characterClass,
+            realm,
+            guild,
+            level,
+            achievement_points: achievementPoints,
+          }
+        } = await axios(`https://${region}.api.blizzard.com/profile/wow/character/${realmSlug}/${encodeURIComponent(characterName)}?namespace=profile-${region}&locale=en_US&access_token=${accessToken}`)
+
+        const {
+          data: {
+            money,
+            protected_stats: {
+              total_item_value_gained,
+            }
+          }
+        } = await axios(`https://${region}.api.blizzard.com/profile/user/wow/protected-character/${realmId}-${characterId}?namespace=profile-${region}&locale=en_US&access_token=${accessToken}`)
+      
+        return {
+          faction: faction.name,
+          race: race.name,
+          characterClass: characterClass.name,
+          specialization: specialization.name,
+          realm: realm.name,
+          guild: guild.name,
+          level,
+          achievementPoints,
+          money,
+          totalItemValueGained: total_item_value_gained,
+        }
+      })
+    )
+
+    return { characters }
+  } catch (error) {
+    if (error.response.status === 404) {
+      return null
     }
-  } = await axios(`https://${region}.api.blizzard.com/profile/wow/character/${realmSlug}/${characterName}?namespace=profile-${region}&locale=en_US&access_token=${accessToken}`)
-
-  return {
-    faction: faction.name,
-    race: race.name,
-    characterClass: characterClass.name,
-    specialization: specialization.name,
-    realm: realm.name,
-    guild: guild.name,
-    level,
-    achievementPoints,
   }
 }
 
