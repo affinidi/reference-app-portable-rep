@@ -14,10 +14,10 @@ export const Typography = styled.p<{
   text-decoration: none;
 
   ${({ $align }) =>
-    $align &&
-    css`
-      text-align: ${$align};
-    `}
+          $align &&
+          css`
+            text-align: ${$align};
+          `}
 
   font-size: ${(props) => {
     switch (props.$variant) {
@@ -120,22 +120,24 @@ export const Typography = styled.p<{
       case 'h6':
       case 'h7':
       case 'h8':
-      case 'p4':
-      case 'p5':
-      case 'p6':
         return '700'
       case 'b1':
       case 'b2':
+        return '600'
+      case 'p4':
+      case 'p5':
+      case 'p6':
       case 'l1':
       case 'l2':
       case 'l3':
       case 'l4':
-        return '600'
-      case 'c1':
         return '500'
+      case 'c1':
+      case 'o1':
+        return '400'
 
       default:
-        return '400'
+        return '300'
     }
   }};
 
