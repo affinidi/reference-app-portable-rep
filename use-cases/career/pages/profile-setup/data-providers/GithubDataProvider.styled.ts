@@ -16,7 +16,7 @@ export const CardHeader = styled(Box)`
 `
 
 export const CardIcon = styled(Box)`
-  img {
+  svg {
     width: ${pxToRem(36)};
     height: ${pxToRem(36)};
   }

@@ -38,7 +38,7 @@ async function handler(
 
   const {
     wallet: { accessToken: cloudWalletAccessToken },
-  } = await iamClient.authenticateCloudWallet({ did: projectDid })
+  } = await iamClient.authenticateCloudWallet({ did: projectDid ?? '' })
 
   const { vc } = await cloudWalletClient.signCredential(
     { vc: unsignedGithubProfileVc },

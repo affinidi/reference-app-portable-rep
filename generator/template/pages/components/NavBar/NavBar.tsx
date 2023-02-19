@@ -4,9 +4,7 @@ import Image from 'next/image'
 
 import { ROUTES } from 'utils'
 import logo from 'public/images/logo.svg'
-import closeIcon from 'public/images/icon-close.svg'
-import menuIcon from 'public/images/icon-menu.svg'
-
+import { CloseIcon, MenuIcon } from 'assets'
 import { Modal, Typography } from 'components'
 
 import { useNavBar } from './useNavBar'
@@ -18,21 +16,19 @@ const NavBar: FC = () => {
   return (
     <>
       <S.Container justifyContent="space-between" alignItems="center" direction="row">
-        <S.Logo>
-          <Link href="/">
-            <Image src={logo} alt="PortId" />
-          </Link>
+        <S.Logo href="/">
+          <Image src={logo} alt="PortId" />
         </S.Logo>
 
         {isAuthorized && (
           <>
             {isMenuOpen ? (
               <S.IconWrapper>
-                <Image src={closeIcon} alt="Close menu" onClick={() => setIsMenuOpen(false)} aria-label="menu-close-icon" />
+                <CloseIcon onClick={() => setIsMenuOpen(false)} aria-label="menu-close-icon" />
               </S.IconWrapper>
             ) : (
               <S.IconWrapper>
-                <Image src={menuIcon} alt="Open menu" onClick={() => setIsMenuOpen(true)} aria-label="menu-open-icon" />
+                <MenuIcon onClick={() => setIsMenuOpen(true)} aria-label="menu-open-icon" />
               </S.IconWrapper>
             )}
           </>

@@ -16,6 +16,7 @@ export const IconWrapper = styled.div`
 
 export const Container = styled(Box)`
   height: ${pxToRem(144)};
+  background: ${props => props.theme.colors.brand.primary['90']};
 
   @media (max-width: 1024px) {
     height: ${pxToRem(164)};

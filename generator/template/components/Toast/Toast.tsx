@@ -1,21 +1,17 @@
-import Image from 'next/image'
 import React from 'react'
 import { toast as reactToast, ToastContainerProps, ToastOptions } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-import wardingFilledIcon from 'public/images/icon-warning-filled.svg'
-import closeFilledIcon from 'public/images/icon-close-filled.svg'
-import infoIcon from 'public/images/icon-info-filled.svg'
-import checkCircleFilledIcon from 'public/images/icon-check-circle-filled.svg'
+import { CheckCircleFilledIcon, CloseFilledIcon, InfoFilledIcon, WarningFilledIcon } from 'assets'
 
 import * as S from './Toast.styled'
 
 const Icons = {
-  info: <Image src={infoIcon} alt="Info" />,
-  warning: <Image src={wardingFilledIcon} alt="Warning" />,
-  error: <Image src={closeFilledIcon} alt="Error" />,
-  success: <Image src={checkCircleFilledIcon} alt="Success" />,
-  default: <Image src={infoIcon} alt="Success" />,
+  info: <InfoFilledIcon />,
+  warning: <WarningFilledIcon />,
+  error: <CloseFilledIcon />,
+  success: <CheckCircleFilledIcon />,
+  default: <InfoFilledIcon />,
 }
 
 export interface ToastProps extends ToastOptions {

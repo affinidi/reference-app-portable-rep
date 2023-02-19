@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import styled from 'styled-components'
 
 import { pxToRem } from 'utils'
@@ -22,11 +23,9 @@ export const ButtonContainer = styled.div`
   }
 `
 
-export const Logo = styled.div`
-  img {
-    cursor: pointer;
-    
-    @media (max-width: 1024px) {
+export const Logo = styled(Link)`
+  @media (max-width: 1024px) {
+    img {
       width: ${pxToRem(80)};
     }
   }
@@ -35,8 +34,8 @@ export const Logo = styled.div`
 
 export const IconWrapper = styled.div`
   cursor: pointer;
-  
-  img {
+
+  svg {
     width: ${pxToRem(32)};
     height: ${pxToRem(32)};
 
@@ -45,8 +44,6 @@ export const IconWrapper = styled.div`
       height: ${pxToRem(24)};
     }
   }
-  
-  
 `
 
 export const Content = styled(Box)`
