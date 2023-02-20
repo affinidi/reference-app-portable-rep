@@ -14,8 +14,8 @@ Now make some changes to `generator/template` or `generator/use-cases/{use-case}
 ## Additional commands
 
 - To just generate the use cases, use `npm run generate`
-- To just run use cases without re-generating them, use `npm run start` or `npm run start:health`
-- To build use cases, use `npm run build` or `npm run build:health`
+- To just run use cases without re-generating them, use `npm run start` or `npm run start:career`
+- To build use cases, use `npm run build` or `npm run build:career`
 
 ## Structure
 
