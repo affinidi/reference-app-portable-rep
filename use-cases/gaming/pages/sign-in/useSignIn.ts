@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { FormEvent, useEffect, useState } from 'react'
 import { ROUTES } from 'utils'
-import { useSessionStorage } from 'hooks/useSessionStorage'
+import { useLocalStorage } from 'hooks/useLocalStorage'
 import { useSignInMutation } from 'hooks/useAuthentication'
 import { useAuthContext } from 'hooks/useAuthContext'
 
@@ -9,7 +9,7 @@ export const useSignIn = () => {
   const [username, setUsername] = useState<string>('')
   const [inputError, setInputError] = useState<string | null>(null)
   const navigate = useRouter()
-  const storage = useSessionStorage()
+  const storage = useLocalStorage()
   const { setAuthState } = useAuthContext()
   const { data, mutateAsync, error, isLoading } = useSignInMutation()
 
