@@ -5,10 +5,15 @@ async function test() {
   const { clientId, clientSecret, issuer, region, accessToken } = JSON.parse(await fs.readFile('.env', { encoding: 'utf-8' }))
 
   const { accountId, battleTag } = await fetchBattleNetProfile({ accessToken })
+  console.log('accountId:', accountId)
 
-  // TODO: avatar, name
-  
-  console.log({ accountId, battleTag })
+  const battleNetProfile = {
+    battleTag,
+    // name,
+    // avatarUrl,
+  }
+
+  console.log(battleNetProfile)
 
   const diabloProfile = await fetchDiablo3Profile({ region, accessToken, battleTag })
   console.log(diabloProfile)
@@ -166,6 +171,7 @@ async function fetchWorldOfWarcraftProfile({ region, accessToken }) {
         } = await axios(`https://${region}.api.blizzard.com/profile/user/wow/protected-character/${realmId}-${characterId}?namespace=profile-${region}&locale=en_US&access_token=${accessToken}`)
       
         return {
+          name: character.name,
           faction: faction.name,
           race: race.name,
           characterClass: characterClass.name,
