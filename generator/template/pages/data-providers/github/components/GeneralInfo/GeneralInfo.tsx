@@ -2,7 +2,8 @@ import { FC } from 'react'
 import Image from 'next/image'
 
 import { GithubProfileCredentialSubject } from 'types/data-providers'
-import { MapOutlinedIcon, OfficeIcon } from 'assets'
+import { MapOutlinedIcon } from 'assets/map-outlined'
+import { OfficeIcon } from 'assets/office'
 import { Box, Typography } from 'components'
 
 import * as S from './GeneralInfo.styled'

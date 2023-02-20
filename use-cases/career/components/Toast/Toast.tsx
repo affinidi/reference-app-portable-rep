@@ -2,7 +2,10 @@ import React from 'react'
 import { toast as reactToast, ToastContainerProps, ToastOptions } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-import { CheckCircleFilledIcon, CloseFilledIcon, InfoFilledIcon, WarningFilledIcon } from 'assets'
+import { CheckCircleFilledIcon } from 'assets/check-circle-filled'
+import { CloseFilledIcon } from 'assets/close-filled'
+import { InfoFilledIcon } from 'assets/info-filled'
+import { WarningFilledIcon } from 'assets/warning-filled'
 
 import * as S from './Toast.styled'
 

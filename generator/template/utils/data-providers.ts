@@ -1,4 +1,5 @@
 import { signIn } from 'next-auth/react'
+import { hostUrl } from 'pages/env'
 
 export enum DataProvider {
   GITHUB = 'github',
@@ -17,7 +18,7 @@ export const DATA_PROVIDER_ROUTES = {
 
 export const initiateDataImport = async (provider: DataProvider) => {
   if (provider === DataProvider.GITHUB) {
-    await signIn('github', { callbackUrl: DATA_PROVIDER_ROUTES.githubCallback })
+    await signIn('github', { callbackUrl: `${hostUrl}${DATA_PROVIDER_ROUTES.githubCallback}` })
   } else {
     throw new Error(`Unknown data provider: ${provider}`)
   }

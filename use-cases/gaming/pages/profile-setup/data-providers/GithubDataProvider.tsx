@@ -1,7 +1,8 @@
 import { FC } from 'react'
 
 import { Box, Typography } from 'components'
-import { DownloadIcon, GithubIcon } from 'assets'
+import { DownloadIcon } from 'assets/download'
+import { GithubIcon } from 'assets/data-providers/github'
 import { VerifiableCredential } from 'types/vc'
 
 import * as S from './GithubDataProvider.styled'

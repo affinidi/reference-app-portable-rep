@@ -4,7 +4,8 @@ import Image from 'next/image'
 
 import { ROUTES } from 'utils'
 import logo from 'public/images/logo.svg'
-import { CloseIcon, MenuIcon } from 'assets'
+import { CloseIcon } from 'assets/close'
+import { MenuIcon } from 'assets/menu'
 import { Modal, Typography } from 'components'
 
 import { useNavBar } from './useNavBar'

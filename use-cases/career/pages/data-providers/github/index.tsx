@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import { ROUTES } from 'utils'
 import { VerifiableCredential } from 'types/vc'
 import useVcProfiles from 'hooks/useVcProfiles'
-import { LoadingIcon } from 'assets'
+import { LoadingIcon } from 'assets/loading'
 import { Box, Container, Header, Spinner } from 'components'
 
 import { GeneralInfo } from './components/GeneralInfo/GeneralInfo'
