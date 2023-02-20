@@ -2,12 +2,12 @@ import { useCallback, useState } from 'react'
 
 import { logout } from 'hooks/useAuthentication'
 import { useAuthContext } from 'hooks/useAuthContext'
-import { useSessionStorage } from 'hooks/useSessionStorage'
+import { useLocalStorage } from 'hooks/useLocalStorage'
 
 export const useNavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { authState, setAuthState } = useAuthContext()
-  const { clear } = useSessionStorage()
+  const { clear } = useLocalStorage()
 
   const handleLogOut = useCallback(async () => {
     await logout()

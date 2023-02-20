@@ -1,24 +1,38 @@
-import { useEffect, useState } from "react";
+type KeyValues =
+  | 'signInToken'
+  | 'did'
+  | 'cloudWalletAccessToken'
+  | 'signInUsername';
 
-export function useLocalStorage<T>(key: string, fallbackValue?: T) {
-  const [value, setValue] = useState(fallbackValue);
+export const getItemFromLocalStorage = (key: KeyValues): string | undefined => {
+  const stored = localStorage.getItem(key)
+  if (!stored) {
+    return undefined
+  }
 
-  useEffect(() => {
-    const stored = localStorage.getItem(key);
-    if (!stored) {
-      return;
-    }
+  return JSON.parse(stored)
+}
 
-    setValue(stored ? JSON.parse(stored) : fallbackValue);
-  }, [fallbackValue, key]);
+export const setItemToLocalStorage = (key: KeyValues, value: string): void => {
+  localStorage.setItem(key, JSON.stringify(value))
+}
 
-  useEffect(() => {
-    if (!value) {
-      return;
-    }
+export const clearLocalStorage = () => {
+  try {
+    localStorage.clear()
+  } catch (error) {
+    return error
+  }
+}
 
-    localStorage.setItem(key, JSON.stringify(value));
-  }, [key, value]);
+export const useLocalStorage = () => {
+  const setItem = setItemToLocalStorage
+  const getItem = getItemFromLocalStorage
+  const clear = clearLocalStorage
 
-  return [value, setValue] as const;
+  return {
+    setItem,
+    getItem,
+    clear,
+  }
 }
