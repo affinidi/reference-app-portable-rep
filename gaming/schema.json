@@ -1,0 +1,437 @@
+{
+  "authorDid": "did:elem:EiC8fehVnWr2XAXlNSdHWg8fy1s8rMImwgn3YaNZQL--jg",
+  "scope": "unlisted",
+  "type": "BattleNetProfile",
+  "version": 1,
+  "revision": 3,
+  "jsonSchema": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://schema.affinidi.com/@did:elem:EiC8fehVnWr2XAXlNSdHWg8fy1s8rMImwgn3YaNZQL--jg/BattleNetProfileV1-3.json",
+    "$metadata": {
+      "version": 1,
+      "revision": 3,
+      "discoverable": true,
+      "uris": {
+        "jsonLdContext": "https://schema.affinidi.com/@did:elem:EiC8fehVnWr2XAXlNSdHWg8fy1s8rMImwgn3YaNZQL--jg/BattleNetProfileV1-3.jsonld",
+        "jsonSchema": "https://schema.affinidi.com/@did:elem:EiC8fehVnWr2XAXlNSdHWg8fy1s8rMImwgn3YaNZQL--jg/BattleNetProfileV1-3.json"
+      }
+    },
+    "title": "BattleNetProfile",
+    "type": "object",
+    "required": [
+      "@context",
+      "type",
+      "issuer",
+      "issuanceDate",
+      "credentialSubject"
+    ],
+    "properties": {
+      "@context": { "type": ["string", "array", "object"] },
+      "id": { "type": "string", "format": "uri" },
+      "type": { "type": ["string", "array"], "items": { "type": "string" } },
+      "issuer": {
+        "type": ["string", "object"],
+        "format": "uri",
+        "required": ["id"],
+        "properties": { "id": { "type": "string", "format": "uri" } }
+      },
+      "issuanceDate": { "type": "string", "format": "date-time" },
+      "expirationDate": { "type": "string", "format": "date-time" },
+      "credentialSubject": {
+        "type": "object",
+        "properties": {
+          "accountId": {
+            "title": "accountId",
+            "type": "number"
+          },
+          "battleTag": {
+            "title": "battleTag",
+            "type": "string"
+          },
+          "games": {
+            "title": "games",
+            "type": "object",
+            "properties": {
+              "diablo3": {
+                "title": "diablo3",
+                "type": "object",
+                "properties": {
+                  "paragonLevel": {
+                    "title": "paragonLevel",
+                    "type": "number"
+                  },
+                  "guildName": {
+                    "title": "guildName",
+                    "type": "string"
+                  },
+                  "totalKills": {
+                    "title": "totalKills",
+                    "type": "number"
+                  },
+                  "heroes": {
+                    "title": "heroes",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "title": "id",
+                          "type": "number"
+                        },
+                        "name": {
+                          "title": "name",
+                          "type": "string"
+                        },
+                        "class": {
+                          "title": "class",
+                          "type": "string"
+                        },
+                        "level": {
+                          "title": "level",
+                          "type": "number"
+                        },
+                        "totalKills": {
+                          "title": "totalKills",
+                          "type": "number"
+                        }
+                      },
+                      "required": ["id", "name", "class", "level", "totalKills"]
+                    }
+                  }
+                },
+                "required": ["paragonLevel", "totalKills", "heroes"]
+              },
+              "starcraft2": {
+                "title": "starcraft2",
+                "type": "object",
+                "properties": {
+                  "id": { "title": "id", "type": "string" },
+                  "displayName": {
+                    "title": "displayName",
+                    "type": "string"
+                  },
+                  "realmId": {
+                    "title": "realmId",
+                    "type": "number"
+                  },
+                  "totalSwarmLevel": {
+                    "title": "totalSwarmLevel",
+                    "type": "number"
+                  },
+                  "totalAchievementPoints": {
+                    "title": "totalAchievementPoints",
+                    "type": "number"
+                  },
+                  "currentBestTeamLeagueName": {
+                    "title": "currentBestTeamLeagueName",
+                    "type": "string"
+                  },
+                  "totalCareerGames": {
+                    "title": "totalCareerGames",
+                    "type": "number"
+                  },
+                  "seasonCareerGames": {
+                    "title": "seasonCareerGames",
+                    "type": "object",
+                    "properties": {
+                      "total": {
+                        "title": "total",
+                        "type": "number"
+                      },
+                      "terranWins": {
+                        "title": "terranWins",
+                        "type": "number"
+                      },
+                      "zergWins": {
+                        "title": "zergWins",
+                        "type": "number"
+                      },
+                      "protossWins": {
+                        "title": "protossWins",
+                        "type": "number"
+                      }
+                    },
+                    "required": ["total", "terranWins", "zergWins", "protossWins"]
+                  }
+                },
+                "required": [
+                  "id",
+                  "displayName",
+                  "realmId",
+                  "totalSwarmLevel",
+                  "totalAchievementPoints",
+                  "totalCareerGames",
+                  "seasonCareerGames"
+                ]
+              },
+              "worldOfWarcraft": {
+                "title": "worldOfWarcraft",
+                "type": "object",
+                "properties": {
+                  "id": { "title": "id", "type": "number" },
+                  "characters": {
+                    "title": "characters",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "title": "id",
+                          "type": "number"
+                        },
+                        "name": {
+                          "title": "name",
+                          "type": "string"
+                        },
+                        "factionName": {
+                          "title": "factionName",
+                          "type": "string"
+                        },
+                        "raceName": {
+                          "title": "raceName",
+                          "type": "string"
+                        },
+                        "characterClassName": {
+                          "title": "characterClassName",
+                          "type": "string"
+                        },
+                        "realmName": {
+                          "title": "realmName",
+                          "type": "string"
+                        },
+                        "guildName": {
+                          "title": "guildName",
+                          "type": "string"
+                        },
+                        "level": {
+                          "title": "level",
+                          "type": "number"
+                        },
+                        "achievementPoints": {
+                          "title": "achievementPoints",
+                          "type": "number"
+                        },
+                        "specializationName": {
+                          "title": "specializationName",
+                          "type": "string"
+                        },
+                        "money": {
+                          "title": "money",
+                          "type": "number"
+                        },
+                        "totalItemValueGained": {
+                          "title": "totalItemValueGained",
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "name",
+                        "raceName",
+                        "characterClassName",
+                        "realmName",
+                        "level",
+                        "achievementPoints",
+                        "money",
+                        "totalItemValueGained"
+                      ]
+                    }
+                  }
+                },
+                "required": ["id", "characters"]
+              }
+            }
+          }
+        },
+        "required": ["accountId", "battleTag", "games"]
+      },
+      "credentialSchema": {
+        "type": "object",
+        "required": ["id", "type"],
+        "properties": {
+          "id": { "type": "string", "format": "uri" },
+          "type": { "type": "string" }
+        }
+      }
+    }
+  },
+  "jsonLdContext": {
+    "@context": {
+      "BattleNetProfile": {
+        "@id": "https://schema.affinidi.com/@did:elem:EiC8fehVnWr2XAXlNSdHWg8fy1s8rMImwgn3YaNZQL--jg/BattleNetProfileV1-3.jsonld",
+        "@context": { "@version": 1.1, "@protected": true }
+      },
+      "accountId": {
+        "@id": "schema-id:accountId",
+        "@type": "https://schema.org/Number"
+      },
+      "battleTag": {
+        "@id": "schema-id:battleTag",
+        "@type": "https://schema.org/Text"
+      },
+      "games": {
+        "@id": "schema-id:games",
+        "@context": {
+          "diablo3": {
+            "@id": "schema-id:diablo3",
+            "@context": {
+              "paragonLevel": {
+                "@id": "schema-id:paragonLevel",
+                "@type": "https://schema.org/Number"
+              },
+              "guildName": {
+                "@id": "schema-id:guildName",
+                "@type": "https://schema.org/Text"
+              },
+              "totalKills": {
+                "@id": "schema-id:totalKills",
+                "@type": "https://schema.org/Number"
+              },
+              "heroes": {
+                "@id": "schema-id:heroes",
+                "@context": {
+                  "id": {
+                    "@id": "schema-id:id",
+                    "@type": "https://schema.org/Number"
+                  },
+                  "name": {
+                    "@id": "schema-id:name",
+                    "@type": "https://schema.org/Text"
+                  },
+                  "class": {
+                    "@id": "schema-id:class",
+                    "@type": "https://schema.org/Text"
+                  },
+                  "level": {
+                    "@id": "schema-id:level",
+                    "@type": "https://schema.org/Number"
+                  },
+                  "totalKills": {
+                    "@id": "schema-id:totalKills",
+                    "@type": "https://schema.org/Number"
+                  }
+                }
+              }
+            }
+          },
+          "starcraft2": {
+            "@id": "schema-id:starcraft2",
+            "@context": {
+              "id": {
+                "@id": "schema-id:id",
+                "@type": "https://schema.org/Text"
+              },
+              "displayName": {
+                "@id": "schema-id:displayName",
+                "@type": "https://schema.org/Text"
+              },
+              "realmId": {
+                "@id": "schema-id:realmId",
+                "@type": "https://schema.org/Number"
+              },
+              "totalSwarmLevel": {
+                "@id": "schema-id:totalSwarmLevel",
+                "@type": "https://schema.org/Number"
+              },
+              "totalAchievementPoints": {
+                "@id": "schema-id:totalAchievementPoints",
+                "@type": "https://schema.org/Number"
+              },
+              "currentBestTeamLeagueName": {
+                "@id": "schema-id:currentBestTeamLeagueName",
+                "@type": "https://schema.org/Text"
+              },
+              "totalCareerGames": {
+                "@id": "schema-id:totalCareerGames",
+                "@type": "https://schema.org/Number"
+              },
+              "seasonCareerGames": {
+                "@id": "schema-id:seasonCareerGames",
+                "@context": {
+                  "total": {
+                    "@id": "schema-id:total",
+                    "@type": "https://schema.org/Number"
+                  },
+                  "terranWins": {
+                    "@id": "schema-id:terranWins",
+                    "@type": "https://schema.org/Number"
+                  },
+                  "zergWins": {
+                    "@id": "schema-id:zergWins",
+                    "@type": "https://schema.org/Number"
+                  },
+                  "protossWins": {
+                    "@id": "schema-id:protossWins",
+                    "@type": "https://schema.org/Number"
+                  }
+                }
+              }
+            }
+          },
+          "worldOfWarcraft": {
+            "@id": "schema-id:worldOfWarcraft",
+            "@context": {
+              "id": {
+                "@id": "schema-id:id",
+                "@type": "https://schema.org/Number"
+              },
+              "characters": {
+                "@id": "schema-id:characters",
+                "@context": {
+                  "id": {
+                    "@id": "schema-id:id",
+                    "@type": "https://schema.org/Number"
+                  },
+                  "name": {
+                    "@id": "schema-id:name",
+                    "@type": "https://schema.org/Text"
+                  },
+                  "factionName": {
+                    "@id": "schema-id:factionName",
+                    "@type": "https://schema.org/Text"
+                  },
+                  "raceName": {
+                    "@id": "schema-id:raceName",
+                    "@type": "https://schema.org/Text"
+                  },
+                  "characterClassName": {
+                    "@id": "schema-id:characterClassName",
+                    "@type": "https://schema.org/Text"
+                  },
+                  "realmName": {
+                    "@id": "schema-id:realmName",
+                    "@type": "https://schema.org/Text"
+                  },
+                  "guildName": {
+                    "@id": "schema-id:guildName",
+                    "@type": "https://schema.org/Text"
+                  },
+                  "level": {
+                    "@id": "schema-id:level",
+                    "@type": "https://schema.org/Number"
+                  },
+                  "achievementPoints": {
+                    "@id": "schema-id:achievementPoints",
+                    "@type": "https://schema.org/Number"
+                  },
+                  "specializationName": {
+                    "@id": "schema-id:specializationName",
+                    "@type": "https://schema.org/Text"
+                  },
+                  "money": {
+                    "@id": "schema-id:money",
+                    "@type": "https://schema.org/Number"
+                  },
+                  "totalItemValueGained": {
+                    "@id": "schema-id:totalItemValueGained",
+                    "@type": "https://schema.org/Number"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

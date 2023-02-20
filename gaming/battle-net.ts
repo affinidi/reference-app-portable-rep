@@ -5,23 +5,25 @@ export interface BattleNetProfileCredentialSubject {
     diablo3?: {
       paragonLevel: number
       guildName?: string
-      kills: number
+      totalKills: number
       heroes: {
         id: number
         name: string
         class: string
-        kills: number
+        level: number
+        totalKills: number
       }[]
     }
     starcraft2?: {
       id: string
       displayName: string
-      realm: number
+      realmId: number
       totalSwarmLevel: number
       totalAchievementPoints: number
       currentBestTeamLeagueName?: string
       totalCareerGames: number
       seasonCareerGames: {
+        total: number
         terranWins: number
         zergWins: number
         protossWins: number
@@ -32,16 +34,16 @@ export interface BattleNetProfileCredentialSubject {
       characters: {
         id: number
         name: string
-        faction: string
-        race: string
-        characterClass: string
-        realm: string
+        factionName: string
+        raceName: string
+        characterClassName: string
+        realmName: string
         guildName?: string
         level: number
         achievementPoints: number
-        specialization: string
-        money: number
-        totalItemValueGained: number
+        specializationName?: string
+        money?: number
+        totalItemValueGained?: number
       }[]
     }
   }
