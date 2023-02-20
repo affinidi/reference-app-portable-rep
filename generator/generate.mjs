@@ -6,6 +6,7 @@ import rimraf from 'rimraf'
 
 const filesToIgnore = ['node_modules', '.next', '.env']
 const pathsToOverwrite = [
+  ['assets', 'data-providers'],
   ['pages', 'api', 'auth'],
   ['pages', 'api', 'data-providers'],
   ['pages', 'data-providers'],

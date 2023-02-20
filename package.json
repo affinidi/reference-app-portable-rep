@@ -17,7 +17,7 @@
     "start:career": "npm run --prefix use-cases/career dev -- -p 3001",
     "start:gaming": "npm run --prefix use-cases/gaming dev -- -p 3002",
 
-    "build": "concurrently -n w: \"npm:build:*(!template)\"",
+    "build": "concurrently -n w: npm:build:*",
     "build:template": "npm run --prefix generator/template build",
     "build:career": "npm run --prefix use-cases/career build",
     "build:gaming": "npm run --prefix use-cases/gaming build"
