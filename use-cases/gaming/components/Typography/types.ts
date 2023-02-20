@@ -15,7 +15,9 @@ export type ParagraphVariant =
   | 'p3'
   | 'p4'
   | 'p5'
-  | 'p6';
+  | 'p6'
+  | 'p7'
+  | 'p8';
 export type ButtonVariant = 'b1' | 'b2';
 export type CaptionVariant = 'c1';
 export type OverlineVariant = 'o1';

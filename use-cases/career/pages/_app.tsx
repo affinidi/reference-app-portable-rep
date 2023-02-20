@@ -7,6 +7,7 @@ import { theme } from 'utils/theme'
 import { AuthProvider } from 'contexts/AuthContext'
 import { ToastsContainer } from 'components'
 
+import '../styles/fonts.css'
 import '../styles/globals.css'
 
 import AuthRedirect from './components/AuthRedirect/AuthRedirect'
