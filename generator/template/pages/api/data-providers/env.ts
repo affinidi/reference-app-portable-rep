@@ -9,5 +9,5 @@ if (missingEnvs.length !== 0) {
   )
 }
 
-export const githubClientId = process.env.GITHUB_APP_CLIENT_ID
-export const githubClientSecret = process.env.GITHUB_APP_CLIENT_SECRET
+export const githubClientId = process.env.GITHUB_APP_CLIENT_ID!
+export const githubClientSecret = process.env.GITHUB_APP_CLIENT_SECRET!
