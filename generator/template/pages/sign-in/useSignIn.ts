@@ -42,10 +42,8 @@ export const useSignIn = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, username])
 
-  const disabled = !username || isLoading
-
   return {
-    disabled,
+    disabled: !username,
     error,
     isLoading,
 

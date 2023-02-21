@@ -138,7 +138,7 @@ export const Button = styled.button<StyledButtonProps>`
       )};
       border-color: ${getBorder(props.$variant, props.$color, 'loading')};
       color: ${getColor(props.$variant, props.$color, 'loading')};
-      cursor: not-allowed;
+      pointer-events: none;
 
       path {
         fill: ${getColor(props.$variant, props.$color, 'loading')};
