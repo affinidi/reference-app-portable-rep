@@ -1,18 +1,18 @@
 import { nanoid } from 'nanoid'
-import { GithubProfileCredentialSubject } from 'types/data-providers'
+import { BattleNetProfileCredentialSubject } from 'types/data-providers'
 import { VerifiableCredential } from 'types/vc'
 
-const VC_JSON_SCHEMA_URL = 'https://schema.affinidi.com/GithubProfileV1-0.json'
-const VC_JSON_LD_CONTEXT_URL = 'https://schema.affinidi.com/GithubProfileV1-0.jsonld'
+const VC_JSON_SCHEMA_URL = 'https://schema.affinidi.com/BattleNetProfileV1-0.json'
+const VC_JSON_LD_CONTEXT_URL = 'https://schema.affinidi.com/BattleNetProfileV1-0.jsonld'
 
-export function generateGithubProfileVc(holderDid: string, credentialSubject: GithubProfileCredentialSubject): VerifiableCredential {
+export function generateBattleNetProfileVc(holderDid: string, credentialSubject: BattleNetProfileCredentialSubject): VerifiableCredential {
   return {
     '@context': [
       'https://www.w3.org/2018/credentials/v1',
       VC_JSON_LD_CONTEXT_URL,
     ],
     id: `claimId:${nanoid()}`,
-    type: ['VerifiableCredential', 'GithubProfile'],
+    type: ['VerifiableCredential', 'BattleNetProfile'],
     holder: {
       id: holderDid,
     },

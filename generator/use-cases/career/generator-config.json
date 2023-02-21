@@ -1,0 +1,9 @@
+{
+  "readmeReplacements": {
+    "<!--- envsNote -->": [
+      "**[Create a Github OAuth app](https://docs.github.com/en/developers/apps/building-oauth-apps/creating-an-oauth-app) and enter values for `GITHUB_APP_CLIENT_ID` and `GITHUB_APP_CLIENT_SECRET` into the `.env` file.**  ",
+      "    When creating the app set **Authorization callback URL** to `http://localhost:3000` or to the host that you are using for this application.  ",
+      "    You can set any value for **Application name**, **Homepage URL** and **Enable Device Flow**."
+    ]
+  }
+}

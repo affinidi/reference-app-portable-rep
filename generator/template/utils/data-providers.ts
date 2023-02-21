@@ -12,7 +12,7 @@ export const dataProviderVcTypes = {
 }
 
 export const DATA_PROVIDER_ROUTES = {
-  [DataProvider.GITHUB]: '/data-providers/github',
+  github: '/data-providers/github',
   githubCallback: '/data-providers/github/callback',
 }
 

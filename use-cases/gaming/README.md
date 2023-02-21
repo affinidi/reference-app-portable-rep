@@ -30,7 +30,10 @@ Setting up the reference app is easy, just follow these steps:
 
     **Enter values for `PROJECT_ID`, `PROJECT_DID` and `API_KEY_HASH` from your Affinidi project properties.** These are filled for you automatically if you used the [VS Code Extension](https://github.com/affinidi/vscode-extension) or [CLI](https://github.com/affinidi/affinidi-cli) to generate the app.
     
-    **[Create a Github OAuth app](https://docs.github.com/en/developers/apps/building-oauth-apps/creating-an-oauth-app) and enter values for `GITHUB_APP_CLIENT_ID` and `GITHUB_APP_CLIENT_SECRET`.** When creating the app set **Authorization callback URL** to `http://localhost:3000` or to the host that you are using for this application. You can set any value for **Application name**, **Homepage URL** and **Enable Device Flow**.
+    **[Create a Battle.net client](https://develop.battle.net/access/clients) and enter values for `BATTLENET_CLIENT_ID` and `BATTLENET_CLIENT_SECRET` into the `.env` file.**  
+    Set **Redirect URL** to `http://localhost:3000/api/auth/callback/battlenet` to test the app locally.  
+    Change `BATTLENET_ISSUER` and `BATTLENET_REGION` values if you need to use a different region ([list of available regions](https://develop.battle.net/documentation/guides/regionality-and-apis)).  
+    **Service URL** is not required for local development.
 4. Launch the app:
     ```
     $ npm run dev
