@@ -62,13 +62,13 @@ async function fetchDiablo3Profile(input: { region: string, battleTag: string, a
     return {
       paragonLevel,
       guildName,
-      kills: Object.values(kills).reduce((a, b) => a + b, 0),
+      totalKills: Object.values(kills).reduce((a, b) => a + b, 0),
       heroes: heroes.map((hero) => ({
         id: hero.id,
         name: hero.name,
         class: hero.class,
         level: hero.level,
-        kills: Object.values(hero.kills).reduce((a, b) => a + b, 0),
+        totalKills: Object.values(hero.kills).reduce((a, b) => a + b, 0),
       })),
     }
   } catch (error) {

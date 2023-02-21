@@ -37,11 +37,11 @@ export interface BattleNetProfileCredentialSubject {
         factionName: string
         raceName: string
         characterClassName: string
+        specializationName?: string
         realmName: string
         guildName?: string
         level: number
         achievementPoints: number
-        specializationName?: string
         money?: number
         totalItemValueGained?: number
       }[]
