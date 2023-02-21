@@ -1,3 +1,4 @@
+// TODO: remove this file
 import { FC } from 'react'
 import { Header, Container, Button } from 'components'
 import { DataProvider, initiateDataImport } from 'utils/data-providers'
