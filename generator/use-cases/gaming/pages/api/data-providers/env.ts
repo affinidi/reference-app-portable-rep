@@ -26,9 +26,9 @@ export const battleNetIssuer = process.env.BATTLENET_ISSUER!
 export const battleNetRegion = process.env.BATTLENET_REGION!
 
 if (!SUPPORTED_BATTLE_NET_ISSUERS.includes(battleNetIssuer)) {
-  throw new Error(`Invalid Battle.net issuer, please check README file.`)
+  throw new Error('Invalid Battle.net issuer, please check README file.')
 }
 
 if (!SUPPORTED_BATTLE_NET_REGIONS.includes(battleNetRegion)) {
-  throw new Error(`Invalid Battle.net region, please check README file.`)
+  throw new Error('Invalid Battle.net region, please check README file.')
 }

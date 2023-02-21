@@ -2,23 +2,23 @@ import { signIn } from 'next-auth/react'
 import { hostUrl } from 'pages/env'
 
 export enum DataProvider {
-  GITHUB = 'github',
+  BATTLE_NET = 'battleNet',
 }
 
-export const dataProviders = [DataProvider.GITHUB]
+export const dataProviders = [DataProvider.BATTLE_NET]
 
 export const dataProviderVcTypes = {
-  [DataProvider.GITHUB]: 'GithubProfile',
+  [DataProvider.BATTLE_NET]: 'BattleNetProfile',
 }
 
 export const DATA_PROVIDER_ROUTES = {
-  [DataProvider.GITHUB]: '/data-providers/github',
-  githubCallback: '/data-providers/github/callback',
+  [DataProvider.BATTLE_NET]: '/data-providers/battle-net',
+  battleNetCallback: '/data-providers/battle-net/callback',
 }
 
 export const initiateDataImport = async (provider: DataProvider) => {
-  if (provider === DataProvider.GITHUB) {
-    await signIn('github', { callbackUrl: `${hostUrl}${DATA_PROVIDER_ROUTES.githubCallback}` })
+  if (provider === DataProvider.BATTLE_NET) {
+    await signIn('battlenet', { callbackUrl: `${hostUrl}${DATA_PROVIDER_ROUTES.battleNetCallback}` })
   } else {
     throw new Error(`Unknown data provider: ${provider}`)
   }

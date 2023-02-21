@@ -1,5 +1,5 @@
 import NextAuth, { NextAuthOptions } from 'next-auth'
-import BattleNetProvider from 'next-auth/providers/battlenet'
+import BattleNetProvider, { BattleNetIssuer } from 'next-auth/providers/battlenet'
 import { authJwtSecret } from '../env'
 import { battleNetClientId, battleNetClientSecret, battleNetIssuer } from '../data-providers/env'
 
@@ -8,7 +8,7 @@ export const authOptions: NextAuthOptions = {
     BattleNetProvider({
       clientId: battleNetClientId,
       clientSecret: battleNetClientSecret,
-      issuer: battleNetIssuer,
+      issuer: battleNetIssuer as BattleNetIssuer,
     })
   ],
   secret: authJwtSecret,

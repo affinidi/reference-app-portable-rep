@@ -2,9 +2,9 @@ import { DefaultSession, DefaultUser } from "next-auth";
 
 declare module "next-auth" {
   interface User extends DefaultUser {
-    githubAccessToken: string
+    battleNetAccessToken: string
   }
   interface Session extends DefaultSession {
-    githubAccessToken: string
+    battleNetAccessToken: string
   }
 }

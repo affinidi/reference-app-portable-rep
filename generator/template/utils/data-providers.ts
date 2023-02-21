@@ -2,7 +2,7 @@ import { signIn } from 'next-auth/react'
 import { hostUrl } from 'pages/env'
 
 export enum DataProvider {
-  GITHUB,
+  GITHUB = 'github',
 }
 
 export const dataProviders = [DataProvider.GITHUB]

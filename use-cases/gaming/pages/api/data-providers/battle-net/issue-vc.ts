@@ -2,14 +2,14 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { z } from 'zod'
 import { use } from 'next-api-middleware'
 import { VerifiableCredential } from 'types/vc'
-import { authenticateGithub } from './helpers/authenticate-github'
-import { gatherGithubProfile } from './helpers/gather-github-profile'
-import { generateGithubProfileVc } from './helpers/generate-github-profile-vc'
 import { allowedHttpMethods } from '../../middlewares/allowed-http-methods'
 import { errorHandler } from '../../middlewares/error-handler'
 import { cloudWalletClient } from '../../clients/cloud-wallet-client'
 import { iamClient } from '../../clients/iam-client'
 import { projectDid } from '../../env'
+import { gatherBattleNetProfile } from './helpers/gather-battle-net-profile'
+import { authenticateBattleNet } from './helpers/authenticate-battle-net'
+import { generateBattleNetProfileVc } from './helpers/generate-battle-net-profile-vc'
 
 type HandlerResponse = {
   vc: VerifiableCredential;
@@ -25,13 +25,13 @@ async function handler(
   req: NextApiRequest,
   res: NextApiResponse<HandlerResponse>
 ) {
-  const githubAccessToken = await authenticateGithub(req)
+  const battleNetAccessToken = await authenticateBattleNet(req)
 
   const { holderDid } = requestSchema.parse(req.body)
 
-  const credentialSubject = await gatherGithubProfile(githubAccessToken)
+  const credentialSubject = await gatherBattleNetProfile(battleNetAccessToken)
 
-  const unsignedGithubProfileVc = generateGithubProfileVc(
+  const unsignedGithubProfileVc = generateBattleNetProfileVc(
     holderDid,
     credentialSubject
   )

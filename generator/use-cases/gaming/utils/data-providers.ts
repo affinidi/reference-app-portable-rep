@@ -2,7 +2,7 @@ import { signIn } from 'next-auth/react'
 import { hostUrl } from 'pages/env'
 
 export enum DataProvider {
-  BATTLE_NET,
+  BATTLE_NET = 'battleNet',
 }
 
 export const dataProviders = [DataProvider.BATTLE_NET]

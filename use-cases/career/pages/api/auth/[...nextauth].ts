@@ -3,10 +3,6 @@ import GithubProvider from 'next-auth/providers/github'
 import { authJwtSecret } from '../env'
 import { githubClientSecret, githubClientId } from '../data-providers/env'
 
-if (!githubClientId || !githubClientSecret) {
-  throw Error('Github client ID or client secret are not provided')
-}
-
 export const authOptions: NextAuthOptions = {
   providers: [
     GithubProvider({

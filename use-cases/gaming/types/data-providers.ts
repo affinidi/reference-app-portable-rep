@@ -1,34 +1,50 @@
-export interface GithubProfileCredentialSubject {
-  userId: string;
-  username: string;
-  company?: string;
-  location?: string;
-  profilePictureUrl?: string;
-  organizationsList: {
-    count: number;
-    items: { name: string }[];
-  };
-  ownedRepositoriesList: {
-    count: number;
-    items: { name: string }[];
-  };
-  languagesList: {
-    count: number;
-    items: { language: string; repositories: number }[];
-  };
-  commits: {
-    total: number;
-    lastWeek: number;
-    lastYear: number;
-  };
-  contributions: {
-    lastWeek: number;
-    lastYear: number;
-  };
-  pullRequests: number;
-  solvedIssues: number;
-  followers: number;
-  following: number;
-  starredRepositories: number;
-  watchedRepositories: number;
+export interface BattleNetProfileCredentialSubject {
+  accountId: number
+  battleTag: string
+  games: {
+    diablo3?: {
+      paragonLevel: number
+      guildName?: string
+      totalKills: number
+      heroes: {
+        id: number
+        name: string
+        class: string
+        level: number
+        totalKills: number
+      }[]
+    }
+    starcraft2?: {
+      id: string
+      displayName: string
+      realmId: number
+      totalSwarmLevel: number
+      totalAchievementPoints: number
+      currentBestTeamLeagueName?: string
+      totalCareerGames: number
+      seasonCareerGames: {
+        total: number
+        terranWins: number
+        zergWins: number
+        protossWins: number
+      }
+    }
+    worldOfWarcraft?: {
+      id: number
+      characters: {
+        id: number
+        name: string
+        factionName: string
+        raceName: string
+        characterClassName: string
+        realmName: string
+        guildName?: string
+        level: number
+        achievementPoints: number
+        specializationName?: string
+        money?: number
+        totalItemValueGained?: number
+      }[]
+    }
+  }
 }

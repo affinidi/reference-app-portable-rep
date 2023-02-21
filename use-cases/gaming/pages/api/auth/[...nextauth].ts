@@ -1,45 +1,35 @@
 import NextAuth, { NextAuthOptions } from 'next-auth'
-import GithubProvider from 'next-auth/providers/github'
+import BattleNetProvider, { BattleNetIssuer } from 'next-auth/providers/battlenet'
 import { authJwtSecret } from '../env'
-import { githubClientSecret, githubClientId } from '../data-providers/env'
-
-if (!githubClientId || !githubClientSecret) {
-  throw Error('Github client ID or client secret are not provided')
-}
+import { battleNetClientId, battleNetClientSecret, battleNetIssuer } from '../data-providers/env'
 
 export const authOptions: NextAuthOptions = {
   providers: [
-    GithubProvider({
-      clientId: githubClientId,
-      clientSecret: githubClientSecret,
-      authorization: {
-        params: {
-          scope: 'repo read:org read:user',
-          // always show Github authentication modal to user
-          prompt: 'consent'
-        },
-      },
-    }),
+    BattleNetProvider({
+      clientId: battleNetClientId,
+      clientSecret: battleNetClientSecret,
+      issuer: battleNetIssuer as BattleNetIssuer,
+    })
   ],
   secret: authJwtSecret,
   callbacks: {
     async signIn({ user, account }) {
-      if (account && account.provider === 'github' && account.access_token) {
-        user.githubAccessToken = account.access_token
+      if (account && account.provider === 'battlenet' && account.access_token) {
+        user.battleNetAccessToken = account.access_token
         return true
       }
 
       return false
     },
     async jwt({ token, user }) {
-      if (user?.githubAccessToken) {
-        token.githubAccessToken = user.githubAccessToken
+      if (user?.battleNetAccessToken) {
+        token.battleNetAccessToken = user.battleNetAccessToken
       }
 
       return token
     },
     async session({ session, token }) {
-      session.githubAccessToken = token.githubAccessToken as string
+      session.battleNetAccessToken = token.battleNetAccessToken as string
       return session
     },
   },
