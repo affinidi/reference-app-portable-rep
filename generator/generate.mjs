@@ -4,7 +4,7 @@ import url from 'url'
 import mkdirp from 'mkdirp'
 import rimraf from 'rimraf'
 
-const filesToIgnore = ['node_modules', '.next', '.env']
+const filesToIgnore = ['node_modules', '.next', '.env', 'generator-config.json']
 const pathsToOverwrite = [
   ['assets', 'data-providers'],
   ['pages', 'api', 'auth'],
@@ -34,6 +34,8 @@ async function generate() {
 
     const generatorUseCasePath = join(generatorUseCasesPath, useCase)
     const useCasePath = join(useCasesPath, useCase)
+
+    const { readmeReplacements } = JSON.parse(await fs.readFile(join(generatorUseCasePath, 'generator-config.json'), { encoding: 'utf-8' }))
 
     console.log('Copying the template')
     const pathsToDelete = (await fs.readdir(useCasePath).catch(() => []))
@@ -65,7 +67,7 @@ async function generate() {
     console.log('Generating the README.md file')
     const readmePath = join(useCasePath, 'README.md')
     await fs.cp(join(rootPath, 'README.md'), readmePath)
-    await replace(readmePath, { '{use-case}': useCase })
+    await replace(readmePath, { '{use-case}': useCase, ...readmeReplacements })
 
     const envPath = join(useCasePath, '.env')
     if (!(await exists(envPath))) {
@@ -85,7 +87,7 @@ async function replace(path, variables) {
   let text = await fs.readFile(path, { encoding: 'utf-8' })
 
   for (const [key, value] of Object.entries(variables)) {
-    text = text.replaceAll(key, value)
+    text = text.replaceAll(key, Array.isArray(value) ? value.join('\n') : value)
   }
 
   await fs.writeFile(path, text, { encoding: 'utf-8' })

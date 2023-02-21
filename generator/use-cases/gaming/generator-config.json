@@ -1,0 +1,10 @@
+{
+  "readmeReplacements": {
+    "<!--- envsNote -->": [
+      "**[Create a Battle.net client](https://develop.battle.net/access/clients) and enter values for `BATTLENET_CLIENT_ID` and `BATTLENET_CLIENT_SECRET` into the `.env` file.**  ",
+      "    Set **Redirect URL** to `http://localhost:3000/api/auth/callback/battlenet` to test the app locally.  ",
+      "    Change `BATTLENET_ISSUER` and `BATTLENET_REGION` values if you need to use a different region ([list of available regions](https://develop.battle.net/documentation/guides/regionality-and-apis)).  ",
+      "    **Service URL** is not required for local development."
+    ]
+  }
+}
