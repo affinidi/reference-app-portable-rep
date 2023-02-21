@@ -7,6 +7,7 @@ import { Container, Header, Spinner } from 'components'
 import { dataProviderComponents } from './data-providers'
 import { DataProvider, dataProviders, initiateDataImport } from 'utils/data-providers'
 
+import { messages } from './messages'
 import * as S from './ProfileSetup.styled'
 
 const ProfileSetup: FC = () => {
@@ -31,7 +32,7 @@ const ProfileSetup: FC = () => {
         ) : (
           <>
             <S.ServiceSelect variant="p1">
-              Please select the service that you would like to connect
+              {messages.subTitle}
             </S.ServiceSelect>
 
             <S.CardRow className="grid lg:grid-cols-3 lg:gap-16">
