@@ -12,7 +12,7 @@ export const dataProviderVcTypes = {
 }
 
 export const DATA_PROVIDER_ROUTES = {
-  [DataProvider.BATTLE_NET]: '/data-providers/battle-net',
+  battleNet: '/data-providers/battle-net',
   battleNetCallback: '/data-providers/battle-net/callback',
 }
 

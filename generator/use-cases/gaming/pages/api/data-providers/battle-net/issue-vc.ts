@@ -31,7 +31,7 @@ async function handler(
 
   const credentialSubject = await gatherBattleNetProfile(battleNetAccessToken)
 
-  const unsignedGithubProfileVc = generateBattleNetProfileVc(
+  const unsignedBattleNetProfileVc = generateBattleNetProfileVc(
     holderDid,
     credentialSubject
   )
@@ -41,7 +41,7 @@ async function handler(
   } = await iamClient.authenticateCloudWallet({ did: projectDid ?? '' })
 
   const { vc } = await cloudWalletClient.signCredential(
-    { vc: unsignedGithubProfileVc },
+    { vc: unsignedBattleNetProfileVc },
     { accessToken: cloudWalletAccessToken }
   )
 

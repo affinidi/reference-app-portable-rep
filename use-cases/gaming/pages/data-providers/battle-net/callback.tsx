@@ -10,7 +10,7 @@ import { VerifiableCredential } from 'types/vc'
 import { ROUTES } from 'utils'
 import { hostUrl } from 'pages/env'
 
-const GithubCallback: FC = () => {
+const BattleNetCallback: FC = () => {
   const { push } = useRouter()
   const { status } = useSession()
 
@@ -23,7 +23,7 @@ const GithubCallback: FC = () => {
       const {
         data: { vc },
       } = await axios<{ vc: VerifiableCredential }>(
-        `${hostUrl}/api/data-providers/github/issue-vc`,
+        `${hostUrl}/api/data-providers/battle-net/issue-vc`,
         {
           method: 'POST',
           data: {
@@ -38,7 +38,7 @@ const GithubCallback: FC = () => {
         data: { vc },
       })
 
-      await push(ROUTES.github)
+      await push(ROUTES.battleNet)
 
       toast('Your data has been successfully imported.', {
         type: 'success',
@@ -52,4 +52,4 @@ const GithubCallback: FC = () => {
   return <Spinner />
 }
 
-export default GithubCallback
+export default BattleNetCallback

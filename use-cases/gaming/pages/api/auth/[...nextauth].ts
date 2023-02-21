@@ -9,6 +9,13 @@ export const authOptions: NextAuthOptions = {
       clientId: battleNetClientId,
       clientSecret: battleNetClientSecret,
       issuer: battleNetIssuer as BattleNetIssuer,
+      authorization: {
+        params: {
+          scope: 'openid wow.profile sc2.profile d3.profile',
+          // always show Battle.net authentication modal to user
+          prompt: 'consent'
+        },
+      },
     })
   ],
   secret: authJwtSecret,
