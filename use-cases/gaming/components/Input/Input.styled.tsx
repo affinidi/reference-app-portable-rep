@@ -90,11 +90,6 @@ export const Input = styled.input<
       padding-right: ${pxToRem(48)};
     `}
   ${(props) =>
-    props.value &&
-    css`
-      background: ${props.theme.colors.neutral.secondary['100']};
-    `}
-  ${(props) =>
     props.$hasError &&
     css`
       padding: ${pxToRem(15)} ${pxToRem(11)};
