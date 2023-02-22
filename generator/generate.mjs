@@ -35,7 +35,16 @@ async function generate() {
     const overridePath = join(overridesPath, useCase)
     const useCasePath = join(useCasesPath, useCase)
 
-    const { readmeReplacements } = JSON.parse(await fs.readFile(join(overridePath, 'generator-config.json'), { encoding: 'utf-8' }))
+    let generatorConfig = {}
+    try {
+      generatorConfig = JSON.parse(await fs.readFile(join(overridePath, 'generator-config.json'), { encoding: 'utf-8' }))
+    } catch (error) {
+      if (error.code !== 'ENOENT') {
+        throw error
+      }
+    }
+
+    const { readmeReplacements } = generatorConfig
 
     console.log('Copying the template')
     const pathsToDelete = (await fs.readdir(useCasePath).catch(() => []))
