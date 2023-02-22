@@ -86,6 +86,8 @@ Learn more about [VCs](https://academy.affinidi.com/what-are-verifiable-credenti
 
 ## Overview diagram
 
+> You might want to install [an extension](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid) to view these Mermaid diagrams.
+
 > We'll use Github as a data provider in this example.
 
 ```mermaid
