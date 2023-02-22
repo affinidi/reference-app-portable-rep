@@ -20,7 +20,9 @@
     "build": "concurrently -n w: npm:build:*",
     "build:template": "npm run --prefix generator/template build",
     "build:career": "npm run --prefix use-cases/career build",
-    "build:gaming": "npm run --prefix use-cases/gaming build"
+    "build:gaming": "npm run --prefix use-cases/gaming build",
+
+    "postinstall": "npm run install-all"
   },
   "repository": {
     "type": "git",
