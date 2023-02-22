@@ -1,6 +1,6 @@
 {
-  "name": "developer-reputation-app",
-  "version": "0.1.0",
+  "name": "reference-app-template",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
