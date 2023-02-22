@@ -20,13 +20,13 @@ export const VerificationFieldContainer = styled(Box)`
 export const VerificationField = styled(Input)`
   input {
     text-align: center;
-    padding: ${pxToRem(4)} ${pxToRem(8)};
-    border-radius: ${pxToRem(8)};
+    padding: ${pxToRem(4)};
+    border-radius: 8px;
     font-size: ${pxToRem(28)};
     font-weight: bold;
 
     &:focus {
-      padding: ${pxToRem(4)} ${pxToRem(8)};
+      padding: ${pxToRem(4)} !important;
       border-width: 1px !important;
     }
   }
