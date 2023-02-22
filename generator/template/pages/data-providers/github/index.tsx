@@ -10,7 +10,7 @@ import { LoadingIcon } from 'assets/loading'
 import { Box, Container, Header, Spinner } from 'components'
 
 import { GeneralInfo } from './components/GeneralInfo/GeneralInfo'
-import { SubInfo } from './components/SublInfo/SubInfo'
+import { SubInfo } from './components/SubInfo/SubInfo'
 import { ListInfo } from './components/ListlInfo/ListInfo'
 import { DataProvider, initiateDataImport } from 'utils/data-providers'
 
