@@ -18,5 +18,5 @@ export const useVerifyVcQuery = (data: { hash: string; key: string }) => {
     )
 
     return { isValid, errors }
-  }, { enabled: Boolean(data.hash && data.key) })
+  }, { enabled: Boolean(data.hash && data.key), retry: false })
 }

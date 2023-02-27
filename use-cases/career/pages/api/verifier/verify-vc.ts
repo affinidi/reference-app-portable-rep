@@ -1,6 +1,10 @@
 import { z } from 'zod'
 import { use } from 'next-api-middleware'
 import type { NextApiRequest, NextApiResponse } from 'next'
+
+import { dataProviderVcTypes } from 'utils/data-providers'
+
+import { ApiError } from '../../api/api-error'
 import { allowedHttpMethods } from '../middlewares/allowed-http-methods'
 import { errorHandler } from '../middlewares/error-handler'
 import { verifierClient } from '../clients/verifier-client'
@@ -25,6 +29,12 @@ async function handler(
   const { hash, key } = requestSchema.parse(req.body)
 
   const { vc } = await cloudWalletClient.retrieveSharedCredential({ hash, key })
+
+  const isValidVcType = Object.values(dataProviderVcTypes).some(type => vc.type.includes(type))
+
+  if (!isValidVcType) {
+    throw new ApiError({ code: 'INVALID_VC_TYPE' })
+  }
 
   const verificationResult = await verifierClient.verifyCredentials({
     verifiableCredentials: [vc]
