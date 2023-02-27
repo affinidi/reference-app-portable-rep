@@ -4,5 +4,7 @@ export type ErrorResponse = {
   issues?: { message: string }[]
 }
 
-export const SCAN_ERROR = 'SCAN_ERROR'
+export enum ErrorCodes {
+  SCAN_ERROR = 'SCAN_ERROR'
+}
 

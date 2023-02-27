@@ -23,3 +23,5 @@ export const apiKeyHash = process.env.API_KEY_HASH
 export const authJwtSecret = process.env.AUTH_JWT_SECRET
 
 export const logLevel = process.env.LOG_LEVEL || 'info'
+
+export const verifierApiUrl = process.env.VERIFIER_API_URL

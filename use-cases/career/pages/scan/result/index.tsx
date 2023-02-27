@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
 import { ROUTES } from 'utils'
-import { ErrorResponse, SCAN_ERROR } from 'types/error'
+import { ErrorCodes, ErrorResponse } from 'types/error'
 
 import { Result } from '../../components/Result/Result'
 
@@ -20,7 +20,7 @@ const ScanResult: FC = () => {
 
   useEffect(() => {
     if (!key || !hash) {
-      setScanError({ code: SCAN_ERROR, message: 'The QR code was not recognized' })
+      setScanError({ code: ErrorCodes.SCAN_ERROR, message: 'The QR code was not recognized' })
     }
   }, [key, hash])
 
