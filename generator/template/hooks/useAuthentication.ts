@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { hostUrl } from '../pages/env'
 import { getItemFromLocalStorage } from './useLocalStorage'
 
-export type ErrorResponse = {
+type ErrorResponse = {
   name: string;
   traceId: string;
   message: string;

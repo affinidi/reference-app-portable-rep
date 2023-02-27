@@ -6,5 +6,9 @@ export const ROUTES = {
   profileSetup: '/',
   singIn: '/sign-in',
   confirmSingIn: '/confirm-sign-in',
+  scan: {
+    root: '/scan',
+    result: '/scan/result'
+  },
   ...DATA_PROVIDER_ROUTES,
 }

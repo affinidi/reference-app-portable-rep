@@ -115,4 +115,17 @@ export const cloudWalletClient = {
       },
     })
   },
+  retrieveSharedCredential: async (input: { hash: string; key: string }): Promise<{ vc: VerifiableCredential }> => {
+    const { data: vc } = await axios<VerifiableCredential>(`${cloudWalletApiUrl}/v1/share/${input.hash}`, {
+      method: 'GET',
+      headers: {
+        'Api-Key': apiKeyHash,
+      },
+      params: {
+        key: input.key,
+      },
+    })
+
+    return { vc }
+  }
 }
