@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-import { pxToRem } from 'utils'
+import { pxToRem } from '/utils'
 import { Box, Card } from 'components'
 
 export const CardWrapper = styled(Card)`
@@ -11,15 +11,8 @@ export const CardWrapper = styled(Card)`
   }
 `
 
-export const CardHeader = styled(Box)`
+export const Header = styled(Box)`
   margin-bottom: ${pxToRem(16)};
-`
-
-export const CardIcon = styled(Box)`
-  svg {
-    width: ${pxToRem(36)};
-    height: ${pxToRem(36)};
-  }
 `
 
 export const Download = styled.div<{ isConnected: boolean }>`
