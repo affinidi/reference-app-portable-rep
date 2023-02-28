@@ -6,6 +6,15 @@ export interface BattleNetProfileCredentialSubject {
       paragonLevel: number
       guildName?: string
       totalKills: number
+      timePlayed: {
+        demonHunter: number
+        barbarian: number
+        witchDoctor: number
+        necromancer: number
+        wizard: number
+        monk: number
+        crusader: number
+      }
       heroes: {
         id: number
         name: string
@@ -27,6 +36,11 @@ export interface BattleNetProfileCredentialSubject {
         terranWins: number
         zergWins: number
         protossWins: number
+      }
+      completedCampaignDifficulties: {
+        heartOfTheSwarm?: string
+        wingsOfLiberty?: string
+        legacyOfTheVoid?: string
       }
     }
     worldOfWarcraft?: {
