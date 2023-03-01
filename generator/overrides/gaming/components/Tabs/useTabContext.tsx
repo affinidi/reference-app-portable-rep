@@ -1,8 +1,9 @@
-import React, { createContext, useContext } from 'react'
+import React, { createContext, ReactNode, useContext } from 'react'
 
 type TabsProviderProps = {
   value: unknown
   onChange: (tab: number) => void
+  children: ReactNode
 }
 
 const tabsContext = createContext({} as TabsProviderProps)

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 
 import { TabsProvider } from './useTabContext'
 import * as S from './Tabs.styled'
@@ -7,6 +7,7 @@ type TabsProps = {
   onChange: (tab: number) => void
   value: unknown
   className?: string
+  children: ReactNode
 }
 
 const Tabs: React.FC<TabsProps> = ({ children, onChange, value, className }) => (

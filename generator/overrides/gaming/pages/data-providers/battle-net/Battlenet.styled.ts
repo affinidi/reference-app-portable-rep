@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import { pxToRem } from 'utils'
-import { Box, Typography } from 'components'
+import { Box, Tabs, Typography } from 'components'
 
 export const Wrapper = styled.div`
   padding: ${pxToRem(24)} 0 ${pxToRem(80)};
@@ -25,4 +25,8 @@ export const LoadingWrapper = styled.div`
   path {
     fill: ${(props) => props.theme.colors.brand.secondary['100']};
   }
+`
+
+export const TabsWrapper = styled(Tabs)`
+  margin-bottom: ${pxToRem(24)};
 `

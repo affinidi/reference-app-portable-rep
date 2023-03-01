@@ -1,10 +1,11 @@
-import React, { HTMLAttributes } from 'react'
+import React, { HTMLAttributes, ReactNode } from 'react'
 
 import { useTabContext } from './useTabContext'
 import * as S from './Tabs.styled'
 
 export interface TabProps extends HTMLAttributes<HTMLDivElement> {
   index: number
+  children: ReactNode
 }
 
 const Tab: React.FC<TabProps> = ({ children, index, ...rest }) => {

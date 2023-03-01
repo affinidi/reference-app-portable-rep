@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-import { pxToRem } from '/utils'
+import { pxToRem } from 'utils'
 import { Box, Card } from 'components'
 
 export const CardWrapper = styled(Card)`
