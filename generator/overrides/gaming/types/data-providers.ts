@@ -27,6 +27,11 @@ export interface BattleNetProfileCredentialSubject {
         terranWins: number
         zergWins: number
         protossWins: number
+      },
+      completedCampaignDifficulties: {
+        wingOfLiberty?: string,
+        heartOfTheSwarm?: string,
+        legacyOfTheVoid?: string,
       }
     }
     worldOfWarcraft?: {
