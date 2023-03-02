@@ -1,19 +1,11 @@
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { useState } from 'react'
+
+import { ErrorResponse } from 'types/error'
+
 import { hostUrl } from '../pages/env'
 import { getItemFromLocalStorage } from './useLocalStorage'
-
-type ErrorResponse = {
-  name: string;
-  traceId: string;
-  message: string;
-  details: {
-    field: string;
-    issue: string;
-    location: string;
-  };
-};
 
 export type SignInInput = {
   username: string;
