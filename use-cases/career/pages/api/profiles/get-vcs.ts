@@ -42,7 +42,7 @@ export async function handler(
 
     res.status(200).json(response)
   } catch (error: any) {
-    if (error.response?.data?.code === ErrorCodes.CWA_4) {
+    if (error.response?.data?.code === 'CWA-4') {
       throw new ApiError({
         code: ErrorCodes.JWT_EXPIRED_ERROR,
         httpStatusCode: 400,

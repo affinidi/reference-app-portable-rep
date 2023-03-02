@@ -42,8 +42,7 @@ const Github: FC = () => {
         setAuthState((prevState) => ({
           ...prevState,
           authorized: false,
-        }))
-        push(ROUTES.singIn)
+        }))  
       } else {
         showErrorToast(error)
       }

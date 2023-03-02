@@ -7,12 +7,15 @@ import { Container, Header, Spinner } from 'components'
 import { useAuthContext } from 'hooks/useAuthContext'
 import { ErrorCodes } from 'types/error'
 import { showErrorToast } from 'utils/errorToast'
-import { DataProvider, dataProviders, initiateDataImport } from 'utils/data-providers'
+import {
+  DataProvider,
+  dataProviders,
+  initiateDataImport,
+} from 'utils/data-providers'
 
 import { messages } from './messages'
 import { dataProviderComponents } from './data-providers'
 import * as S from './ProfileSetup.styled'
-
 
 const ProfileSetup: FC = () => {
   const { push } = useRouter()
@@ -34,7 +37,6 @@ const ProfileSetup: FC = () => {
           ...prevState,
           authorized: false,
         }))
-        push(ROUTES.singIn)
       } else {
         showErrorToast(error)
       }
@@ -43,25 +45,25 @@ const ProfileSetup: FC = () => {
 
   return (
     <>
-      <Header title="Setup your profile" />
+      <Header title='Setup your profile' />
 
       <Container>
-        { isLoading ? (
+        {isLoading ? (
           <Spinner />
         ) : (
           <>
-            <S.ServiceSelect variant="p1">
-              {messages.subTitle}
-            </S.ServiceSelect>
+            <S.ServiceSelect variant='p1'>{messages.subTitle}</S.ServiceSelect>
 
-            <S.CardRow className="grid lg:grid-cols-3 lg:gap-16">
+            <S.CardRow className='grid lg:grid-cols-3 lg:gap-16'>
               {dataProviders.map((provider) => {
                 const DataProviderComponent = dataProviderComponents[provider]
-                return <DataProviderComponent
-                  key={provider}
-                  vc={data?.vcs[provider]}
-                  onConnect={() => handleConnect(provider)}
-                />
+                return (
+                  <DataProviderComponent
+                    key={provider}
+                    vc={data?.vcs[provider]}
+                    onConnect={() => handleConnect(provider)}
+                  />
+                )
               })}
             </S.CardRow>
           </>
