@@ -3,8 +3,8 @@ import styled, { css } from 'styled-components'
 import { pxToRem } from 'utils'
 import { Box, Typography } from 'components'
 
-export const UserInfo = styled(Box)`
-  margin-bottom: ${pxToRem(40)};
+export const MainTitle = styled(Typography)`
+  margin: ${pxToRem(24)} 0 ${pxToRem(16)};
 `
 
 export const Title = styled(Typography)`
@@ -19,12 +19,12 @@ export const Block = styled(Box)<{ $isBig?: boolean }>`
   ${props => props.$isBig && css`
     height: ${pxToRem(192)};
   `}
-
-  img {
-    max-width: ${pxToRem(240)};
-  }
 `
 
 export const BlockTitle = styled(Typography)`
   color: ${props => props.theme.colors.neutral.primary['50']};
+`
+
+export const Label = styled(Typography)`
+  color: ${props => props.theme.colors.brand.primary['50']};
 `

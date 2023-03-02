@@ -1,32 +1,33 @@
 /** @type {import('next').NextConfig} */
-const path = require("path");
+const path = require('path')
 
 const nextConfig = {
   async rewrites() {
     return [
       {
-        source: "/",
-        destination: "/profile-setup",
+        source: '/',
+        destination: '/profile-setup',
       },
-    ];
+    ]
   },
   reactStrictMode: false,
   sassOptions: {
-    includePaths: [path.join(__dirname, "styles")],
+    includePaths: [path.join(__dirname, 'styles')],
   },
   images: {
+    formats: ['image/webp'],
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "avatars.githubusercontent.com",
-        port: "",
-        pathname: "/u/**",
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+        port: '',
+        pathname: '/u/**',
       },
     ],
   },
   compiler: {
     styledComponents: true,
   },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig

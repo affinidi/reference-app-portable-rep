@@ -1,7 +1,8 @@
 import React, { ReactNode } from 'react'
 
+import Box from '../Box/Box'
+
 import { TabsProvider } from './useTabContext'
-import * as S from './Tabs.styled'
 
 type TabsProps = {
   onChange: (tab: number) => void
@@ -12,9 +13,9 @@ type TabsProps = {
 
 const Tabs: React.FC<TabsProps> = ({ children, onChange, value, className }) => (
   <TabsProvider onChange={onChange} value={value}>
-    <S.Tabs gap={40} alignItems="center" direction="row" className={className}>
+    <Box gap={40} alignItems="center" direction="row" className={className}>
       {children}
-    </S.Tabs>
+    </Box>
   </TabsProvider>
 )
 
