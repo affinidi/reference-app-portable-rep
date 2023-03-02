@@ -19,6 +19,10 @@ export const Block = styled(Box)<{ $isBig?: boolean }>`
   ${props => props.$isBig && css`
     height: ${pxToRem(192)};
   `}
+
+  img {
+    max-width: ${pxToRem(240)};
+  }
 `
 
 export const BlockTitle = styled(Typography)`

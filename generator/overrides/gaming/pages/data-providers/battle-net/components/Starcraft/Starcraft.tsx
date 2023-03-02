@@ -1,7 +1,11 @@
 import { FC } from 'react'
+import Image from 'next/image'
 
 import { BattleNetProfileCredentialSubject } from 'types/data-providers'
 import { AvatarIcon } from 'assets/avatar'
+import starcraftHeartOfTheSwarm from 'public/images/starcraftHeartOfTheSwarm@3x.webp'
+import starcraftWingOfLiberty from 'public/images/starcraftWingOfLiberty@3x.webp'
+import starcraftLegacyOfTheVoid from 'public/images/starcraftLegacyOfTheVoid@3x.webp'
 import { Box, Typography } from 'components'
 
 import Card from '../Card/Card'
@@ -68,32 +72,37 @@ const Starcraft: FC<StarcraftProps> = ({ data }) => (
 
     <S.Title variant="h7">Campaigns completed</S.Title>
 
-    <div className="grid lg:grid-cols-12 lg:gap-x-16 gap-x-12">
+    <div className="grid lg:grid-cols-12 lg:gap-x-16 gap-x-12 gap-y-8">
       {data?.completedCampaignDifficulties?.heartOfTheSwarm && (
         <div className="lg:col-span-4 col-span-12">
-          <S.Block alignItems="center" justifyContent="center" gap={8} $isBig>
-            <Typography variant="h6">Starcraft</Typography>
-            <Typography variant="p0">Hart of the swarm</Typography>
+          <S.Block alignItems="center" justifyContent="center" $isBig>
+            <Image src={starcraftHeartOfTheSwarm} alt="Starcraft: Hart of the swarm" />
           </S.Block>
         </div>
       )}
 
       {data?.completedCampaignDifficulties?.wingOfLiberty && (
         <div className="lg:col-span-4 col-span-12">
-          <S.Block alignItems="center" justifyContent="center" gap={8} $isBig>
-            <Typography variant="h6">Starcraft</Typography>
-            <Typography variant="p0">Wings of libery</Typography>
+          <S.Block alignItems="center" justifyContent="center" $isBig>
+            <Image src={starcraftWingOfLiberty} alt="Starcraft: Wings of liberty" />
           </S.Block>
         </div>
       )}
 
       {data?.completedCampaignDifficulties?.legacyOfTheVoid && (
         <div className="lg:col-span-4 col-span-12">
-          <S.Block alignItems="center" justifyContent="center" gap={8} $isBig>
-            <Typography variant="h6">Starcraft</Typography>
-            <Typography variant="p0">Legacy of the void</Typography>
+          <S.Block alignItems="center" justifyContent="center" $isBig>
+            <Image src={starcraftLegacyOfTheVoid} alt="Starcraft: Legacy of the void" />
           </S.Block>
         </div>
+      )}
+
+      {!data?.completedCampaignDifficulties?.legacyOfTheVoid &&
+        !data?.completedCampaignDifficulties?.heartOfTheSwarm &&
+        !data?.completedCampaignDifficulties?.wingOfLiberty && (
+          <div className="col-span-12">
+            <Typography variant="p1">No finished campaigns.</Typography>
+          </div>
       )}
     </div>
   </>

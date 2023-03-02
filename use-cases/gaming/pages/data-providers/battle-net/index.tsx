@@ -8,9 +8,11 @@ import { VerifiableCredential } from 'types/vc'
 import useVcProfiles from 'hooks/useVcProfiles'
 import { LoadingIcon } from 'assets/loading'
 import { DataProvider, initiateDataImport } from 'utils/data-providers'
-import { Container, Header, Spinner, Tab, Typography } from 'components'
+import { Container, Header, Spinner, Tab } from 'components'
 
 import Starcraft from './components/Starcraft/Starcraft'
+import Diablo from './components/Diablo/Diablo'
+import WorldOfWarcraft from './components/WorldOfWarcraft/WorldOfWarcraft'
 import * as S from './Battlenet.styled'
 
 enum TabsEnum {
@@ -64,9 +66,9 @@ const BattleNet: FC = () => {
 
           {TabsEnum.TAB_0 === activeTab && <Starcraft data={vcs?.battleNet?.credentialSubject?.games?.starcraft2} />}
 
-          {TabsEnum.TAB_1 === activeTab && <Typography variant="p3">DIABLO III content</Typography>}
+          {TabsEnum.TAB_1 === activeTab && <Diablo data={vcs?.battleNet?.credentialSubject?.games?.diablo3} />}
 
-          {TabsEnum.TAB_2 === activeTab && <Typography variant="p3">WORLD OF WARCRAFT content</Typography>}
+          {TabsEnum.TAB_2 === activeTab && <WorldOfWarcraft data={vcs?.battleNet?.credentialSubject?.games?.worldOfWarcraft} />}
         </S.Wrapper>
       </Container>
     </>

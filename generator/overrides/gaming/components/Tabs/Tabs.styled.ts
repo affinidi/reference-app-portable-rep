@@ -1,8 +1,6 @@
 import styled, { css } from 'styled-components'
 
 import { pxToRem } from '../../utils'
-
-import Box from '../Box/Box'
 import Typography from '../Typography/Typography'
 
 export const Tab = styled(Typography)<{ $isActive: boolean }>`
@@ -23,9 +21,4 @@ export const Tab = styled(Typography)<{ $isActive: boolean }>`
       pointer-events: none;
       border-color: ${theme.colors.brand.secondary['100']};
     `}
-`
-
-export const Tabs = styled(Box)`
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
-  z-index: 1;
 `
