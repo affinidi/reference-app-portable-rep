@@ -1,5 +1,4 @@
 import { FC, useEffect, useState } from 'react'
-import { useSession } from 'next-auth/react'
 import { format } from 'date-fns'
 import { useRouter } from 'next/router'
 
@@ -11,21 +10,20 @@ import { Box, Container, Header, Spinner } from 'components'
 import { DataProvider, initiateDataImport } from 'utils/data-providers'
 import { ErrorCodes } from 'types/error'
 import { useAuthContext } from 'hooks/useAuthContext'
+import { showErrorToast } from 'utils/errorToast'
 
 import { GeneralInfo } from './components/GeneralInfo/GeneralInfo'
 import { SubInfo } from './components/SubInfo/SubInfo'
 import { ListInfo } from './components/ListlInfo/ListInfo'
 
 import * as S from './Github.styled'
-import { showErrorToast } from 'utils/errorToast'
-
 
 const Github: FC = () => {
   const { push } = useRouter()
   const [vc, setVc] = useState<VerifiableCredential>()
   const { data, error, isLoading } = useVcProfiles()
-  const { setAuthState } = useAuthContext()
-  
+  const { updateAuthState } = useAuthContext()
+
   useEffect(() => {
     if (!data?.vcs) return
 
@@ -39,15 +37,14 @@ const Github: FC = () => {
   useEffect(() => {
     if (error) {
       if (error?.response?.data?.error?.code === ErrorCodes.JWT_EXPIRED_ERROR) {
-        setAuthState((prevState) => ({
-          ...prevState,
+        updateAuthState({
           authorized: false,
-        }))  
+        })
       } else {
         showErrorToast(error)
       }
     }
-  }, [error, push, setAuthState])
+  }, [error, push, updateAuthState])
 
   if (isLoading || !vc) {
     return <Spinner />
