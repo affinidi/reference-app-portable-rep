@@ -1,13 +1,15 @@
 import { FC, useEffect, useState } from 'react'
-import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { format } from 'date-fns'
 
 import { ROUTES } from 'utils'
-import { VerifiableCredential } from 'types/vc'
-import useVcProfiles from 'hooks/useVcProfiles'
-import { LoadingIcon } from 'assets/loading'
 import { DataProvider, initiateDataImport } from 'utils/data-providers'
+import { showErrorToast } from 'utils/errorToast'
+import { VerifiableCredential } from 'types/vc'
+import { ErrorCodes } from 'types/error'
+import useVcProfiles from 'hooks/useVcProfiles'
+import { useAuthContext } from 'hooks/useAuthContext'
+import { LoadingIcon } from 'assets/loading'
 import { Container, Header, Spinner, Tab } from 'components'
 
 import Starcraft from './components/Starcraft/Starcraft'
@@ -23,38 +25,53 @@ enum TabsEnum {
 
 const BattleNet: FC = () => {
   const { push } = useRouter()
-  const { status } = useSession()
   const [vc, setVc] = useState<VerifiableCredential>()
-  const { vcs } = useVcProfiles()
+  const { data, isLoading, error } = useVcProfiles()
   const [activeTab, setActiveTab] = useState(TabsEnum.TAB_0)
+  const { updateAuthState } = useAuthContext()
 
   useEffect(() => {
-    if (!vcs) return
+    if (!data?.vcs) return
 
-    if (vcs.battleNet) {
-      setVc(vcs.battleNet)
+    if (data.vcs.battleNet) {
+      setVc(data.vcs.battleNet)
     } else {
       push(ROUTES.profileSetup)
     }
-  }, [push, vcs])
+  }, [push, data])
 
-  if (status === 'loading' || !vc) {
+  useEffect(() => {
+    if (error) {
+      if (error?.response?.data?.error?.code === ErrorCodes.JWT_EXPIRED_ERROR) {
+        updateAuthState({
+          authorized: false,
+        })
+      } else {
+        showErrorToast(error)
+      }
+    }
+  }, [error, push, updateAuthState])
+
+  if (isLoading || !vc) {
     return <Spinner />
   }
 
   return (
     <>
-      <Header title="Battletag" hasBackIcon path={ROUTES.profileSetup} />
+      <Header title='Battletag' hasBackIcon path={ROUTES.profileSetup} />
 
       <Container>
         <S.Wrapper>
-          <S.LastUpdate direction="row" alignItems="center" gap={8}>
-            <S.GrayText variant="p3">
-              Last import of Battle.net data: {format(new Date(vc.issuanceDate), 'dd/MM/yyyy')}
+          <S.LastUpdate direction='row' alignItems='center' gap={8}>
+            <S.GrayText variant='p3'>
+              Last import of Battle.net data:{' '}
+              {format(new Date(vc.issuanceDate), 'dd/MM/yyyy')}
             </S.GrayText>
 
             <S.LoadingWrapper>
-              <LoadingIcon onClick={() => initiateDataImport(DataProvider.BATTLE_NET)} />
+              <LoadingIcon
+                onClick={() => initiateDataImport(DataProvider.BATTLE_NET)}
+              />
             </S.LoadingWrapper>
           </S.LastUpdate>
 
@@ -64,11 +81,19 @@ const BattleNet: FC = () => {
             <Tab index={TabsEnum.TAB_2}>WORLD OF WARCRAFT</Tab>
           </S.TabsWrapper>
 
-          {TabsEnum.TAB_0 === activeTab && <Starcraft data={vcs?.battleNet?.credentialSubject?.games?.starcraft2} />}
+          {TabsEnum.TAB_0 === activeTab && (
+            <Starcraft data={vc.credentialSubject?.games?.starcraft2} />
+          )}
 
-          {TabsEnum.TAB_1 === activeTab && <Diablo data={vcs?.battleNet?.credentialSubject?.games?.diablo3} />}
+          {TabsEnum.TAB_1 === activeTab && (
+            <Diablo data={vc.credentialSubject?.games?.diablo3} />
+          )}
 
-          {TabsEnum.TAB_2 === activeTab && <WorldOfWarcraft data={vcs?.battleNet?.credentialSubject?.games?.worldOfWarcraft} />}
+          {TabsEnum.TAB_2 === activeTab && (
+            <WorldOfWarcraft
+              data={vc.credentialSubject?.games?.worldOfWarcraft}
+            />
+          )}
         </S.Wrapper>
       </Container>
     </>

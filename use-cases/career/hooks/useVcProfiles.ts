@@ -1,11 +1,9 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
-import { useSession } from 'next-auth/react'
+import { useQuery } from '@tanstack/react-query'
 
 import { hostUrl } from 'pages/env'
 import { createCloudWalletAuthenticationHeaders } from 'hooks/useAuthentication'
 import { VcProfileMap } from 'types/profile'
-import { useQuery } from '@tanstack/react-query'
 import { ErrorResponse } from 'types/error'
 
 const useVcProfiles = () => {

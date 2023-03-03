@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
-import { useState } from 'react'
+import { useState, Dispatch, SetStateAction } from 'react'
 
 import { ErrorResponse } from 'types/error'
 
@@ -8,8 +8,8 @@ import { hostUrl } from '../pages/env'
 import { getItemFromLocalStorage } from './useLocalStorage'
 
 export type SignInInput = {
-  username: string;
-};
+  username: string
+}
 
 export const signIn = async (input: SignInInput): Promise<string> => {
   const {
@@ -23,13 +23,13 @@ export const signIn = async (input: SignInInput): Promise<string> => {
 }
 
 export type ConfirmSignInInput = {
-  token: string;
-  confirmationCode: string;
-};
+  token: string
+  confirmationCode: string
+}
 
 export type ConfirmSignInOutput = {
-  accessToken: string;
-};
+  accessToken: string
+}
 
 export const confirmSignIn = async (
   input: ConfirmSignInInput
@@ -90,9 +90,9 @@ export const useConfirmSignInMutation = () => {
 }
 
 export type UserState = {
-  authorized: boolean;
-  loading: boolean;
-};
+  authorized: boolean
+  loading: boolean
+}
 
 const BASIC_STATE: UserState = {
   authorized: false,
@@ -102,23 +102,22 @@ const BASIC_STATE: UserState = {
 export const useAuthentication = () => {
   const [authState, setAuthState] = useState<UserState>(BASIC_STATE)
 
+  const updatePartiallyState =
+    <T>(updateFunction: Dispatch<SetStateAction<T>>) =>
+    (newState: Partial<T>) => {
+      updateFunction((prev) => ({ ...prev, ...newState }))
+    }
+  const updateAuthState = updatePartiallyState<typeof authState>(setAuthState)
+
   const authenticate = async () => {
     try {
       await getDid()
 
-      setAuthState((prevState) => ({
-        ...prevState,
-        loading: false,
-        authorized: true,
-      }))
+      updateAuthState({ loading: false, authorized: true })
     } catch (error) {
-      setAuthState((prevState) => ({
-        ...prevState,
-        loading: false,
-        authorized: false,
-      }))
+      updateAuthState({ loading: false, authorized: false })
     }
   }
 
-  return { authState, setAuthState, authenticate }
+  return { authState, setAuthState, authenticate, updateAuthState }
 }
