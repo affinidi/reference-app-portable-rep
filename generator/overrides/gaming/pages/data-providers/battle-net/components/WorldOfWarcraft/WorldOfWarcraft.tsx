@@ -45,11 +45,6 @@ const WorldOfWarcraft: FC<WorldOfWarcraftProps> = ({ data }) => (
             </div>
 
             <div className="md:col-span-4 lg:col-span-2 col-span-6">
-              <S.Label variant="p5">Money</S.Label>
-              <Typography variant="p1">{character.money}</Typography>
-            </div>
-
-            <div className="md:col-span-4 lg:col-span-2 col-span-6">
               <S.Label variant="p5">Guild</S.Label>
               <Typography variant="p1">{character.guildName}</Typography>
             </div>
