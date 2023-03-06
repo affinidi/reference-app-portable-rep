@@ -142,7 +142,7 @@ async function fetchStarcraft2Profile(input: { region: string, accountId: number
         totalGamesThisSeason: number
         currentBestTeamLeagueName?: string
       }
-      completedCampaignDifficulties: Record<string, string>
+      campaign: { difficultyCompleted: Record<string, string> }
     }>(`https://${input.region}.api.blizzard.com/sc2/profile/${regionId}/${realmId}/${profileId}`, {
       params: { locale: 'en_US' },
       headers: generateAuthorizationHeaders(input.accessToken),
