@@ -58,7 +58,7 @@ const BattleNet: FC = () => {
 
   return (
     <>
-      <Header title='Battletag' hasBackIcon path={ROUTES.profileSetup} />
+      <Header title={vc.credentialSubject?.battleTag} hasBackIcon path={ROUTES.profileSetup} />
 
       <Container>
         <S.Wrapper>
