@@ -42,6 +42,7 @@ async function fetchDiablo3Profile(input: { region: string, battleTag: string, a
         guildName,
         kills,
         heroes,
+        timePlayed
       }
     } = await axios<{
       paragonLevel: number
@@ -54,6 +55,7 @@ async function fetchDiablo3Profile(input: { region: string, battleTag: string, a
         level: number
         kills: Record<string, number>
       }[]
+      timePlayed: Record<string, number>
     }>(`https://${input.region}.api.blizzard.com/d3/profile/${encodeURIComponent(input.battleTag)}/`, {
       params: { locale: 'en_US' },
       headers: generateAuthorizationHeaders(input.accessToken),
@@ -70,6 +72,15 @@ async function fetchDiablo3Profile(input: { region: string, battleTag: string, a
         level: hero.level,
         totalKills: Object.values(hero.kills).reduce((a, b) => a + b, 0),
       })),
+      timePlayed: {
+        demonHunter: timePlayed['demon-hunter'],
+        barbarian: timePlayed['barbarian'],
+        witchDoctor: timePlayed['witch-doctor'],
+        necromancer: timePlayed['necromancer'],
+        wizard: timePlayed['wizard'],
+        monk: timePlayed['monk'],
+        crusader: timePlayed['crusader'],
+      },
     }
   } catch (error) {
     if ([500, 404].includes(error.response.status)) {
@@ -113,7 +124,8 @@ async function fetchStarcraft2Profile(input: { region: string, accountId: number
           totalCareerGames,
           totalGamesThisSeason,
           currentBestTeamLeagueName,
-        }
+        },
+        campaign: { difficultyCompleted },
       }
     } = await axios<{
       summary: {
@@ -130,6 +142,7 @@ async function fetchStarcraft2Profile(input: { region: string, accountId: number
         totalGamesThisSeason: number
         currentBestTeamLeagueName?: string
       }
+      completedCampaignDifficulties: Record<string, string>
     }>(`https://${input.region}.api.blizzard.com/sc2/profile/${regionId}/${realmId}/${profileId}`, {
       params: { locale: 'en_US' },
       headers: generateAuthorizationHeaders(input.accessToken),
@@ -148,6 +161,11 @@ async function fetchStarcraft2Profile(input: { region: string, accountId: number
         terranWins,
         zergWins,
         protossWins,
+      },
+      completedCampaignDifficulties: {
+        wingOfLiberty: difficultyCompleted['wings-of-liberty'],
+        heartOfTheSwarm: difficultyCompleted['heart-of-the-swarm'],
+        legacyOfTheVoid: difficultyCompleted['legacy-of-the-void'],
       }
     }
   } catch (error) {

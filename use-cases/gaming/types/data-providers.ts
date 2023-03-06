@@ -12,6 +12,15 @@ export interface BattleNetProfileCredentialSubject {
         class: string
         level: number
         totalKills: number
+        timePlayed: {
+          demonHunter: number
+          barbarian: number
+          witchDoctor: number
+          necromancer: number
+          wizard: number
+          monk: number
+          crusader: number
+        }
       }[]
     }
     starcraft2?: {
