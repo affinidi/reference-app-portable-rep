@@ -1,6 +1,7 @@
 import { Dispatch, FC, FormEvent, SetStateAction } from 'react'
 
 import { Container, Header, Input } from 'components'
+import { ErrorResponse } from 'types/error'
 
 import * as S from './SigninForm.styled'
 
@@ -9,7 +10,7 @@ type SignInFormProps = {
   setUsername(username: string): void;
   disabled: boolean;
   isLoading: boolean;
-  error: Error | null;
+  error: ErrorResponse | null;
   inputError: string | null;
   setInputError: Dispatch<SetStateAction<string | null>>;
 };
