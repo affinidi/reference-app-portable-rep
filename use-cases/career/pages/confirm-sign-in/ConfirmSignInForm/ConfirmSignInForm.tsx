@@ -1,12 +1,12 @@
 import { FC, ReactNode, useEffect, useState } from 'react'
 
 import { Box, Container, Header, Typography } from 'components'
-import { ErrorCodes } from 'types/error'
+import { ErrorCodes, ErrorResponse } from 'types/error'
 
 import * as S from './ConfirmSignInForm.styled'
 
 type ConfirmSignInFormProps = {
-  error: Error | null
+  error: ErrorResponse | null
   onSubmit(): void
   inputs: ReactNode
   isButtonDisabled: boolean
