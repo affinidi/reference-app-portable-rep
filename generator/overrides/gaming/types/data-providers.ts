@@ -12,16 +12,16 @@ export interface BattleNetProfileCredentialSubject {
         class: string
         level: number
         totalKills: number
-        timePlayed: {
-          demonHunter: number
-          barbarian: number
-          witchDoctor: number
-          necromancer: number
-          wizard: number
-          monk: number
-          crusader: number
-        }
       }[]
+      timePlayed: {
+        demonHunter: number
+        barbarian: number
+        witchDoctor: number
+        necromancer: number
+        wizard: number
+        monk: number
+        crusader: number
+      }
     }
     starcraft2?: {
       id: string
@@ -36,11 +36,11 @@ export interface BattleNetProfileCredentialSubject {
         terranWins: number
         zergWins: number
         protossWins: number
-      },
+      }
       completedCampaignDifficulties: {
-        wingOfLiberty?: string,
-        heartOfTheSwarm?: string,
-        legacyOfTheVoid?: string,
+        wingOfLiberty?: string
+        heartOfTheSwarm?: string
+        legacyOfTheVoid?: string
       }
     }
     worldOfWarcraft?: {
