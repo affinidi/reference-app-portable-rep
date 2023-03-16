@@ -82,8 +82,8 @@ async function fetchDiablo3Profile(input: { region: string, battleTag: string, a
         crusader: timePlayed['crusader'],
       },
     }
-  } catch (error) {
-    if ([500, 404].includes(error.response.status)) {
+  } catch (error: any) {
+    if ([500, 404].includes(error?.response?.status)) {
       return undefined
     } else {
       throw error
@@ -168,8 +168,8 @@ async function fetchStarcraft2Profile(input: { region: string, accountId: number
         legacyOfTheVoid: difficultyCompleted['legacy-of-the-void'],
       }
     }
-  } catch (error) {
-    if ([500, 404].includes(error.response.status)) {
+  } catch (error: any) {
+    if ([500, 404].includes(error?.response?.status)) {
       return undefined
     } else {
       throw error
@@ -210,10 +210,10 @@ async function fetchWorldOfWarcraftProfile(input: { region: string, accessToken:
 
     return {
       id,
-      characters: characters.filter(Boolean)
+      characters: characters.filter(Boolean) as any[]
     }
-  } catch (error) {
-    if ([500, 404].includes(error.response.status)) {
+  } catch (error: any) {
+    if ([500, 404].includes(error?.response?.status)) {
       return undefined
     } else {
       throw error
@@ -262,8 +262,8 @@ async function fetchWorldOfWarcraftCharacter(input: { character: WarcraftAccount
       })
       money = data.money
       totalItemValueGained = data.protected_stats.total_item_value_gained
-    } catch (error) {
-      if (![500, 404].includes(error.response.status)) {
+    } catch (error: any) {
+      if (![500, 404].includes(error?.response?.status)) {
         throw error
       }
     }
@@ -282,8 +282,8 @@ async function fetchWorldOfWarcraftCharacter(input: { character: WarcraftAccount
       money,
       totalItemValueGained,
     }
-  } catch (error) {
-    if ([500, 404].includes(error.response.status)) {
+  } catch (error: any) {
+    if ([500, 404].includes(error?.response?.status)) {
       return undefined
     } else {
       throw error
@@ -291,7 +291,7 @@ async function fetchWorldOfWarcraftCharacter(input: { character: WarcraftAccount
   }
 }
 
-function generateAuthorizationHeaders(accessToken) {
+function generateAuthorizationHeaders(accessToken: string) {
   return {
     'Authorization': `Bearer ${accessToken}`
   }

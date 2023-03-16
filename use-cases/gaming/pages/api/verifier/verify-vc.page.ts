@@ -4,7 +4,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 
 import { dataProviderVcTypes } from 'utils/data-providers'
 
-import { ApiError } from '../../api/api-error'
+import { ApiError } from '../api-error'
 import { allowedHttpMethods } from '../middlewares/allowed-http-methods'
 import { errorHandler } from '../middlewares/error-handler'
 import { verifierClient } from '../clients/verifier-client'

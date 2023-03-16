@@ -4,6 +4,7 @@ on: [pull_request]
 
 env:
   use_case: use-cases/gaming
+  NEXT_PUBLIC_HOST:  ${{ vars.NEXT_PUBLIC_HOST }}
 
 jobs:
   lint:
