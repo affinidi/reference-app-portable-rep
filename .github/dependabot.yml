@@ -1,0 +1,17 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/use-cases/career" # Location of package manifests
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "build"
+    open-pull-requests-limit: 0    
+  
+  - package-ecosystem: "npm"
+    directory: "/use-cases/gaming" # Location of package manifests
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "build"
+    open-pull-requests-limit: 0    
